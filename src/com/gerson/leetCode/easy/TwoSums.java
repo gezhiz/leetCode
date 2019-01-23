@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-
+ * 解答方案2，3中，主要是采用空间换取时间的方法，采用hashmap巧妙的解答了此算法
  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
  You may assume that each input would have exactly one solution, and you may not use the same element twice.
  Example:
