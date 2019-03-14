@@ -11,6 +11,6 @@ public class ObserverMain {
         PlatformWeather platformWeather = new PlatformWeather();
         platformWeather.register(o1);
         platformWeather.register(o2);
-        platformWeather.event();
+        platformWeather.notifyObserver();
     }
 }

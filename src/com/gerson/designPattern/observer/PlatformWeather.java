@@ -10,11 +10,13 @@ import java.util.List;
 public class PlatformWeather implements Observable {
 
     List<Observer> observers = new ArrayList<>();
+    private String data = "37 C";
 
 
     @Override
     public void register(Observer observer) {
         observers.add(observer);
+        observer.setObservable(this);
     }
 
     @Override
@@ -23,9 +25,14 @@ public class PlatformWeather implements Observable {
     }
 
     @Override
-    public void event() {
+    public void notifyObserver() {
         for (Observer observer : observers) {
-            observer.event();
+            observer.event();//通知
         }
+    }
+
+    @Override
+    public String getData() {
+        return data;
     }
 }

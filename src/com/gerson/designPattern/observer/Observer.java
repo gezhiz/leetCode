@@ -6,4 +6,5 @@ package com.gerson.designPattern.observer;
  */
 public interface Observer {
     void event();
+    void setObservable(Observable observable);
 }

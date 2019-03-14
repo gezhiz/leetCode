@@ -7,5 +7,7 @@ public interface Observable {
 
     void register(Observer observer);
     void remove(Observer observer);
-    void event();
+    void notifyObserver();//通知观察者
+
+    String getData();//需要发布的数据
 }
