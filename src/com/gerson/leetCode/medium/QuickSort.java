@@ -42,7 +42,7 @@ public class QuickSort {
 
     @Test
     public void test() {
-        int arrays[] = {1,11,10,4,1,1,6,6,8,7,20,1000,2000};
+        int arrays[] = {1,111,10,4,12,1,6,63,8,7,20,1000,2000,21131,2323,3231,23,42,11,1,2,3,4,5,2,3,4,5,2,5,2,3,2};
         sort(arrays,0,arrays.length - 1);
         for (int i : arrays) {
             System.out.print(i + ",");
