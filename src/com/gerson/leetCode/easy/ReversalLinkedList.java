@@ -24,6 +24,7 @@ public class ReversalLinkedList {
         while(iterator.hasNext()) {
             System.out.println(iterator.next() + " ");
         }
+        System.out.println("链表长度:" + myLinkedList.getSize());
 
     }
 

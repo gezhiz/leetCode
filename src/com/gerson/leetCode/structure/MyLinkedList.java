@@ -7,42 +7,55 @@ import java.util.Iterator;
  */
 public class MyLinkedList<T> {
 
-    //头结点
+    /**
+     * 头指针，引用类型，用来标记链表的头部
+     */
     private Node head;
-    //尾节点
+    /**
+     * 尾指针，引用类型，用来标记链表的尾部
+     */
     private Node tail;
+    /**
+     * 链表的实际长度
+     */
     private int size;
 
     public MyLinkedList() {
-        this.head = new Node(null);
-        this.tail = new Node(null);
     }
 
     /**
      * 尾插发
      * @param node
      */
-    public void add(Node node) {
-        if (head.getNext() == null) {
-            head.setNext(node);
-            tail.setNext(node);
+    private void add(Node node) {
+        size++;
+        if (head == null) {
+            head = node;
+            tail = node;
             return;
         }
-        tail.getNext().setNext(node);
         tail.setNext(node);
+        tail = node;
 
     }
 
+    /**
+     * 尾插发插入插入一个元素
+     * @param t
+     */
     public void add(T t) {
         add(new Node(t));
     }
 
+    /**
+     * 反转链表
+     */
     public void reverse() {
         //初始化
         Node pre = head;
         Node cur = head.getNext();
         Node temp;
-        tail = head.getNext();
+        tail = head;
         //开始循环
         while(cur != null) {
             temp = cur.getNext();
@@ -53,12 +66,17 @@ public class MyLinkedList<T> {
         head.setNext(null);
         head = pre;
     }
+
+    /**
+     * 迭代器
+     * @param <T>
+     */
     private class MyIterator<T> implements Iterator {
 
         private Node<T> _head = head;
         @Override
         public boolean hasNext() {
-            return _head.getNext() != null;
+            return _head != null;
         }
 
         @Override
@@ -74,6 +92,10 @@ public class MyLinkedList<T> {
         }
     }
 
+    /**
+     * 新建一个迭代器
+     * @return
+     */
     public Iterator<T> getIterator() {
         return new MyIterator();
     }
@@ -87,6 +109,10 @@ public class MyLinkedList<T> {
         this.size = size;
     }
 
+    /**
+     * 单个节点
+     * @param <T>
+     */
     private static class Node<T> {
         private Node<T> next;
         private T item;
