@@ -68,6 +68,24 @@ public class MyLinkedList<T> {
     }
 
     /**
+     * 两两结点反转
+     * 1->2->3->4     =>   2->1->4->3
+     * 1->2->3->4->5  =>   2->1->4->3->5
+     */
+    public void doubleReverse() {
+        if (head == null) {
+            return;
+        }
+        Node<T> pre = head;
+        Node<T> cur = head.getNext();
+        Node<T> temp;
+        while(cur != null) {
+            temp = cur.getNext();
+            //todo 未完待续
+        }
+    }
+
+    /**
      * 迭代器
      * @param <T>
      */

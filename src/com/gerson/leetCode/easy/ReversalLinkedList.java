@@ -19,6 +19,9 @@ public class ReversalLinkedList {
         myLinkedList.add(3);
         myLinkedList.add(4);
         myLinkedList.add(5);
+        myLinkedList.add(6);
+        myLinkedList.add(7);
+        myLinkedList.add(8);
         myLinkedList.reverse();
         Iterator<Integer> iterator = myLinkedList.getIterator();
         while(iterator.hasNext()) {
