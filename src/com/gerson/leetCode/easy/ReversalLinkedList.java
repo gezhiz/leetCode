@@ -22,7 +22,7 @@ public class ReversalLinkedList {
         myLinkedList.reverse();
         Iterator<Integer> iterator = myLinkedList.getIterator();
         while(iterator.hasNext()) {
-            System.out.print(iterator.next() + " ");
+            System.out.println(iterator.next() + " ");
         }
 
     }

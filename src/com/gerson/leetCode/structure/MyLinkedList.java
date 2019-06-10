@@ -39,29 +39,33 @@ public class MyLinkedList<T> {
 
     public void reverse() {
         //初始化
-        Node newHead = null;
+        Node pre = head;
         Node cur = head.getNext();
+        Node temp;
+        tail = head.getNext();
         //开始循环
         while(cur != null) {
-            //使用头插法把cur插入到newHead
-            newHead = cur;
-
-            cur = cur.getNext();
+            temp = cur.getNext();
+            cur.setNext(pre);
+            pre = cur;
+            cur = temp;
         }
-        head = newHead;
+        head.setNext(null);
+        head = pre;
     }
     private class MyIterator<T> implements Iterator {
 
-        private Node<T> index = head;
+        private Node<T> _head = head;
         @Override
         public boolean hasNext() {
-            return index.getNext() != null;
+            return _head.getNext() != null;
         }
 
         @Override
         public T next() {
-            index = index.getNext();
-            return index.getItem();
+            T _item = _head.getItem();
+            _head = _head.getNext();
+            return _item;
         }
 
         @Override
