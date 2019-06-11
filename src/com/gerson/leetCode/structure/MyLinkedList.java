@@ -76,13 +76,23 @@ public class MyLinkedList<T> {
         if (head == null) {
             return;
         }
+        Node<T> pre_pre = null;
         Node<T> pre = head;
         Node<T> cur = head.getNext();
-        Node<T> temp;
         while(cur != null) {
-            temp = cur.getNext();
-            //todo 未完待续
+            pre.setNext(cur.getNext());
+            cur.setNext(pre);
+            if (pre_pre != null) {
+                //第一次置换
+                pre_pre.setNext(cur);
+                head = cur;
+            } else {
+                pre_pre = pre;
+            }
+            pre = pre.getNext() == null ? pre : pre.getNext();
+            cur = pre.getNext();
         }
+        tail = pre;
     }
 
     /**
