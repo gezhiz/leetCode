@@ -80,17 +80,19 @@ public class MyLinkedList<T> {
         Node<T> pre = head;
         Node<T> cur = head.getNext();
         while(cur != null) {
+            if (pre_pre == null) {
+                //第一次置换
+                head = cur;
+            } else{
+                pre_pre.setNext(cur);
+            }
+            pre_pre = cur;
             pre.setNext(cur.getNext());
             cur.setNext(pre);
-            if (pre_pre != null) {
-                //第一次置换
-                pre_pre.setNext(cur);
-                head = cur;
-            } else {
-                pre_pre = pre;
-            }
+            //三个指针均向后偏移
             pre = pre.getNext() == null ? pre : pre.getNext();
             cur = pre.getNext();
+            pre_pre = pre_pre.getNext();
         }
         tail = pre;
     }
