@@ -49,6 +49,7 @@ public class MyLinkedList<T> {
 
     /**
      * 反转链表
+     * 1->2->3->4->5   =>  5->4->3->2->1
      */
     public void reverse() {
         //初始化
