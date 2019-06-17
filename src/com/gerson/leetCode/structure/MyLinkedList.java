@@ -5,7 +5,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by gezz on 2019/6/6.
+ *
+ * @author gezz
+ * @date 2019/6/6
  */
 public class MyLinkedList<T> {
 
