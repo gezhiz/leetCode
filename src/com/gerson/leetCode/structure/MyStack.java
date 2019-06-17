@@ -36,12 +36,11 @@ public class MyStack<E> {
     }
 
     public E pop() {
-
-        return (E) items[index];
+        return (E) items[index--];
     }
 
-    public E push(E e) {
-
+    public void push(E e) {
+        items[index++] = e;
     }
 
     public static Integer getDefaultLength() {
