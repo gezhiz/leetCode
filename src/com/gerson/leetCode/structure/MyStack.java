@@ -36,11 +36,21 @@ public class MyStack<E> {
     }
 
     public E pop() {
-        return (E) items[index--];
+        if (size-- == 0) {
+            return null;
+        }
+        return (E) items[--index];
     }
 
     public void push(E e) {
+        if (size++ == capacity) {
+            expand();
+        }
         items[index++] = e;
+    }
+
+    private void expand() {
+        //todo 扩容
     }
 
     public static Integer getDefaultLength() {
