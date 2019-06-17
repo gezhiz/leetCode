@@ -1,6 +1,8 @@
 package com.gerson.leetCode.structure;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by gezz on 2019/6/6.
@@ -96,6 +98,67 @@ public class MyLinkedList<T> {
             pre_pre = pre_pre.getNext();
         }
         tail = pre;
+    }
+
+    /**
+     * 制造链表环
+     * 制造end位置指向start位置的循环链表
+     */
+    public void makeLoop(int start) {
+        if (start > size) {
+            tail.setNext(head);
+        }
+        int i = 0;
+        Node<T> startNode = head;
+        while(start > i++) {
+            startNode = startNode.getNext();
+            if (start <= i) {
+                break;
+            }
+        }
+        tail.setNext(startNode);
+
+    }
+
+
+    /**
+     * set集合记录法：
+     * 判断链表是否有循环
+     */
+    public boolean hasLoop1() {
+        Node<T> cur = head;
+        Set<Node<T>> sets = new HashSet<>();
+        while(cur != null) {
+            if (sets.contains(cur)) {
+                return true;
+            } else {
+                sets.add(cur);
+            }
+            cur = cur.getNext();
+        }
+        return false;
+    }
+
+    /**
+     * 快慢指针的方法：
+     * 判断链表是否有循环
+     */
+    public boolean hasLoop2() {
+        Node<T> slow = head;
+        Node<T> fast = head;
+        while(true) {
+            slow = slow.getNext();
+            fast = fast.getNext();
+            if (fast == null) {
+                return false;
+            } else {
+                fast = fast.getNext();
+            }
+
+            if (fast == slow) {
+                return true;
+            }
+        }
     }
 
     /**
