@@ -36,9 +36,10 @@ public class MyStack<E> {
     }
 
     public E pop() {
-        if (size-- == 0) {
+        if (size == 0) {
             return null;
         }
+        size--;
         return (E) items[--index];
     }
 
