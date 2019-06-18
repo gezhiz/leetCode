@@ -39,8 +39,9 @@ public class MyStack<E> {
         if (size == 0) {
             return null;
         }
-        size--;
-        return (E) items[--index];
+        E item = (E) items[--index];
+        items[index + 1] = null;
+        return item;
     }
 
     public void push(E e) {
