@@ -1,4 +1,4 @@
-package com.gerson.leetCode.easy;
+package com.gerson.leetcode.easy;
 
 import java.util.HashMap;
 import java.util.Map;

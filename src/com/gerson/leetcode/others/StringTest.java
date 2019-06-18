@@ -1,4 +1,4 @@
-package com.gerson.leetCode.others;
+package com.gerson.leetcode.others;
 
 import org.junit.Test;
 

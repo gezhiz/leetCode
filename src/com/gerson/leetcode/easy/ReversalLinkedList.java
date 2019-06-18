@@ -1,6 +1,6 @@
-package com.gerson.leetCode.easy;
+package com.gerson.leetcode.easy;
 
-import com.gerson.leetCode.structure.MyLinkedList;
+import com.gerson.leetcode.structure.MyLinkedList;
 import org.junit.Test;
 
 import java.util.Iterator;

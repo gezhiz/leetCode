@@ -1,4 +1,4 @@
-package com.gerson.leetCode.structure;
+package com.gerson.leetcode.structure;
 
 
 /**

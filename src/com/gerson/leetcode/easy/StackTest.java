@@ -1,6 +1,6 @@
-package com.gerson.leetCode.easy;
+package com.gerson.leetcode.easy;
 
-import com.gerson.leetCode.structure.MyStack;
+import com.gerson.leetcode.structure.MyStack;
 import org.junit.Test;
 
 public class StackTest {

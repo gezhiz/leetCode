@@ -1,9 +1,4 @@
-package com.gerson.leetCode.medium;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.gerson.leetcode.medium;
 
 /**
  * 从数列中找到最大的n个数

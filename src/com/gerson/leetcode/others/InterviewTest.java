@@ -1,4 +1,4 @@
-package com.gerson.leetCode.easy;
+package com.gerson.leetcode.others;
 
 import org.junit.Test;
 
@@ -8,49 +8,15 @@ import java.util.Map;
 /**
  * Created by gezz on 2019/2/28.
  */
-public class MaxLength {
-
-    /**
-     * 斐波那契数列实现
-     * 1 1 2 3 5 8 13 21 34
-     */
-
-    @Test
-    public void testFeb() {
-        int n = 20;
-        for (int i = 1; i < n; i++) {
-            System.out.print(getFebItem(i) + " ");
-        }
-    }
-
-    public int getFebItem(int n) {
-        if (n < 0) {
-            return -1;
-        } else if (n == 0 || n == 1) {
-            return n;
-        }
-        if (n == 2) {
-            return 1;
-        }
-        int sum = 0;
-        int first = 0;
-        int second = 1;
-        for (int i = 0; i < n - 1; i++) {//第n个元素，需要记录n-1次
-            sum = first + second;
-            first = second;
-            second = sum;
-        }
-        return sum;
-    }
-
+public class InterviewTest {
 
     /**
      * ﻿
      给定一个字符串“a b webd a  agesg aeg ewe sdse ddd age ewewr age”，输出每一个字符串的出现的次数，如：
-     age:2
-     a:2
-     b:1
-     aeg:1
+         age:2
+         a:2
+         b:1
+         aeg:1
      */
     @Test
     public void testPrintCount() {
