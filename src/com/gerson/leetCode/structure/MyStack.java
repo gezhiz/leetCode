@@ -1,5 +1,6 @@
 package com.gerson.leetCode.structure;
 
+
 /**
  * @description 数据结构：栈，基于数组的实现
  * @author gezz
@@ -18,11 +19,7 @@ public class MyStack<E> {
     /**
      * 记录栈顶元素位置
      */
-    private int index;
-    /**
-     * 站内元素数量
-     */
-    private int size;
+    private int top;
     /**
      * 栈容量
      */
@@ -30,29 +27,30 @@ public class MyStack<E> {
 
     public MyStack() {
         this.capacity = DEFAULT_LENGTH;
-        this.size = 0;
-        this.index = 0;
+        this.top = -1;
         items = new Object[capacity];
     }
 
     public E pop() {
-        if (size == 0) {
+        if (getSize() == 0) {
             return null;
         }
-        E item = (E) items[--index];
-        items[index + 1] = null;
+        E item = (E) items[top];
+        items[top--] = null;
         return item;
     }
 
     public void push(E e) {
-        if (size++ == capacity) {
+        if (getSize() == capacity) {
             expand();
         }
-        items[index++] = e;
+        items[++top] = e;
     }
 
     private void expand() {
-        //todo 扩容
+        Object[] newItems = new Object[capacity + DEFAULT_LENGTH];
+        System.arraycopy(items, 0, newItems, 0, items.length);
+        items = newItems;
     }
 
     public static Integer getDefaultLength() {
@@ -60,7 +58,7 @@ public class MyStack<E> {
     }
 
     public int getSize() {
-        return size;
+        return  top + 1;
     }
 
     public int getCapacity() {
