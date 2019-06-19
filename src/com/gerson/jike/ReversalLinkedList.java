@@ -1,4 +1,4 @@
-package com.gerson.leetcode.easy;
+package com.gerson.jike;
 
 import com.gerson.leetcode.structure.MyLinkedList;
 import org.junit.Test;
