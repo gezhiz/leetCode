@@ -40,8 +40,17 @@ public class MaxSlidingWindow {
      */
     @Test
     public void test1() {
-        int[] nums = {9,2,9,4,10,54,1,99,78,2,6,5,8,234};
-        int[] result = maxSlidingWindow(nums,3);
+//        int[] nums = {9,2,9,4,10,54,1,99,78,2,4,5,2,33,45,2,4,5,6,5,8,234};
+        int[] nums = {5183,2271,3067,539,8939,2999,9264,737,3974,5846
+                ,-210,9278,5800,2675,6608,1133,-1,6018,9672,5179,9842
+                ,7424,-209,2988,2757,5984,1107,2644,-499,7234,7539,6525,
+                347,5718,-742,1797,5292,976,8752,8297,1312,3385,5924,2882,
+                6091,-282,2595,96,1906,8014,7667,5895,7283,7974,-167,7068,
+                3946,6223,189,1589,2058,9277,-302,8157,8256,5261,8067,1071,
+                9470,2682,8197,5632,753,3179,8187,9042,8167,4657,7080,7801,
+                5627,7917,8085,928,-892,-427,3685,4676,2431,8064,8537,343,
+                505,4352,2108,4399,66,2086,1922,9126,9460,393,443,5689,7595};
+        int[] result = maxSlidingWindow(nums,5);
         if (result == null) {
             return;
         }
@@ -60,7 +69,7 @@ public class MaxSlidingWindow {
      */
     public int[] maxSlidingWindowWrong(int[] nums, int k) {
         if (nums.length < k) {
-            return null;
+            return new int[0];
         }
         int result[] = new int[nums.length - k + 1];
         int max = 0;
@@ -91,18 +100,25 @@ public class MaxSlidingWindow {
      * @return
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        if (k == 0) {
-            return null;
+        if (k == 0 || nums == null) {
+            return new int[0];
         }
         Deque<Integer> arrayDeque = new ArrayDeque<>(k);
-        int[] result = new int[nums.length];
+        int[] result = new int[nums.length - k + 1];
         //记录当前最大值在数列中的索引
         int curMaxIndex = 0;
+        //记录第二大的数
+        int nextMaxIndex = 0;
         for (int i = 0; i < nums.length; i++) {
             int item = nums[i];
             //判断最大值是否在窗口内部
             if (arrayDeque.size() > 0 && curMaxIndex <= i - k) {
+                //最大值被移除，新的最大值变成了第二个数
                 arrayDeque.pollFirst();
+                //todo 更新最大值的索引
+                if (nextMaxIndex != 0) {
+                    curMaxIndex = nextMaxIndex;
+                }
             }
             while (arrayDeque.size() > 0 && item >= arrayDeque.getLast()) {
                 arrayDeque.pollLast();
@@ -110,9 +126,15 @@ public class MaxSlidingWindow {
             if (arrayDeque.size() == 0) {
                 //队列被清空，item为当前窗口的最大值，更新curMaxIndex
                 curMaxIndex = i;
+                nextMaxIndex = 0;
+            } else if (arrayDeque.size() == 1) {
+                //仅仅剩下最大的数
+                nextMaxIndex = i;
             }
             arrayDeque.addLast(item);
-            result[i] = arrayDeque.getFirst();
+            if (i >= k - 1) {
+                result[i - k + 1] = arrayDeque.getFirst();
+            }
         }
         return result;
     }
