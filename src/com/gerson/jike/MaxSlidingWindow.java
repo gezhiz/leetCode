@@ -40,7 +40,7 @@ public class MaxSlidingWindow {
      */
     @Test
     public void test1() {
-        int[] nums = {9,2,5,4,10,54,1,99,78,2,6,5,8,234};
+        int[] nums = {9,2,9,4,10,54,1,99,78,2,6,5,8,234};
         int[] result = maxSlidingWindow(nums,3);
         if (result == null) {
             return;
@@ -85,8 +85,7 @@ public class MaxSlidingWindow {
 
     /**
      * 最大值存放在队列最左边
-     * 如果入队item比最大值要大，清空队列，记录当前最大值的索引，根据k和i的值来判定最大值是否已经划出了窗口
-     * 每次从右边入队时，如果右边有更小的元素，则让其弹出
+     * 每次从右边入队时，如果右边有更小的元素，则让其弹出.如果队列被清空，当前item就是最大值，记录当前最大值的索引，根据k和i的值来判定最大值是否已经划出了窗口
      * @param nums
      * @param k
      * @return
@@ -96,7 +95,7 @@ public class MaxSlidingWindow {
             return null;
         }
         Deque<Integer> arrayDeque = new ArrayDeque<>(k);
-        int result[] = new int[nums.length];
+        int[] result = new int[nums.length];
         //记录当前最大值在数列中的索引
         int curMaxIndex = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -105,12 +104,12 @@ public class MaxSlidingWindow {
             if (arrayDeque.size() > 0 && curMaxIndex <= i - k) {
                 arrayDeque.pollFirst();
             }
-            if (arrayDeque.size() > 0 && item > arrayDeque.getFirst()) {
-                arrayDeque.clear();
-                curMaxIndex = i;
-            }
-            while (arrayDeque.size() > 0 && item > arrayDeque.getLast()) {
+            while (arrayDeque.size() > 0 && item >= arrayDeque.getLast()) {
                 arrayDeque.pollLast();
+            }
+            if (arrayDeque.size() == 0) {
+                //队列被清空，item为当前窗口的最大值，更新curMaxIndex
+                curMaxIndex = i;
             }
             arrayDeque.addLast(item);
             result[i] = arrayDeque.getFirst();
