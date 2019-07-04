@@ -52,8 +52,10 @@ public class MaxSlidingWindow {
     }
 
     /**
-     * 最大值存放在队列最左边
-     * 每次从右边入队时，如果右边有更小的元素，则让其弹出.如果队列被清空，当前item就是最大值，记录当前最大值的索引，根据k和i的值来判定最大值是否已经划出了窗口
+     * 核心点：
+     * 1、使用双端队列
+     * 2、队里里存放数组下标，下标可以用来判断元素是否在滑动窗口内部，还可以获取到元素本身
+     * 3、队列里一直保持最左边的数是最大值（通过每次入队时，如果右边有比当前小的数，则从右边出队列）
      * @param nums
      * @param k
      * @return
@@ -74,6 +76,7 @@ public class MaxSlidingWindow {
             while (arrayDeque.size() > 0 && item >= nums[arrayDeque.getLast()]) {
                 arrayDeque.pollLast();
             }
+            //入队列
             arrayDeque.addLast(i);
             if (i >= k - 1) {
                 result[i - k + 1] = nums[arrayDeque.getFirst()];
