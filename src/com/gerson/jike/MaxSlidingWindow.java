@@ -84,12 +84,9 @@ public class MaxSlidingWindow {
 //    }
 
     /**
-     * 使用固定长度的双端队列解决这个问题
-     * item从前面进，后面出，
-     * 0、如果队列已经满了，则右边出队列
-     * 1、如果遇到更大的值，清空队列，保证最大值一直存放在队列尾部，也能保证最大值在适当的时候出队列
-     * 2、如果遇到更小的值，只从左边入队
-     * 3、比较当前值是否是最大，最大值一直存放在队列尾部
+     * 最大值存放在队列最左边
+     * 如果入队item比最大值要大，清空队列，记录当前最大值的索引，根据k和i的值来判定最大值是否已经划出了窗口
+     * 每次从右边入队时，如果右边有更小的元素，则让其弹出
      * @param nums
      * @param k
      * @return
@@ -100,26 +97,23 @@ public class MaxSlidingWindow {
         }
         Deque<Integer> arrayDeque = new ArrayDeque<>(k);
         int result[] = new int[nums.length];
+        //记录当前最大值在数列中的索引
+        int curMaxIndex = 0;
         for (int i = 0; i < nums.length; i++) {
             int item = nums[i];
-            if (arrayDeque.size() == k) {
-                //todo 这段处理还有问题
-//                arrayDeque.pollLast();//最后的元素出队列,移除最大的元素，并且保留剩下的最大的元素
-//                int curMax = 0;
-//                while(arrayDeque.size() > 0) {
-//                    int curItem = arrayDeque.pollLast();
-//                    curMax = curItem > curMax ? curItem : curMax;
-//                }
-//                arrayDeque.offerFirst(curMax);
+            //判断最大值是否在窗口内部
+            if (arrayDeque.size() > 0 && curMaxIndex <= i - k) {
+                arrayDeque.pollFirst();
             }
-
-            if (arrayDeque.size() > 0 && arrayDeque.getLast() < item) {
-                //比最大值还大，item入队
-                //队列空间受限制时使用offer，而add方法适合无限空间的队列
+            if (arrayDeque.size() > 0 && item > arrayDeque.getFirst()) {
                 arrayDeque.clear();
+                curMaxIndex = i;
             }
-            arrayDeque.offerFirst(item);
-            result[i] = arrayDeque.getLast();
+            while (arrayDeque.size() > 0 && item > arrayDeque.getLast()) {
+                arrayDeque.pollLast();
+            }
+            arrayDeque.addLast(item);
+            result[i] = arrayDeque.getFirst();
         }
         return result;
     }
