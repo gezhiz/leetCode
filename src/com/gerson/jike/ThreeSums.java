@@ -31,12 +31,13 @@ public class ThreeSums {
         if (nums == null || nums.length < 3) {
             return Collections.emptyList();
         }
+        Arrays.sort(nums);
         Set<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            set.add(num);
-        }
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
+            if (i >= 1 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             for (int j = i + 1; j < nums.length; j++) {
                 if (set.contains(k - (nums[i] + nums[j]))) {
                     List<Integer> item = new ArrayList<>();
@@ -44,6 +45,10 @@ public class ThreeSums {
                     item.add(nums[j]);
                     item.add(k - (nums[i] + nums[j]));
                     result.add(item);
+                } else {
+                    //用set记录
+                    set.add(nums[i]);
+                    set.add(nums[j]);
                 }
             }
         }
