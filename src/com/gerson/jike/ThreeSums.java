@@ -126,12 +126,51 @@ public class ThreeSums {
         return ans;
     }
 
+    public static List<List<Integer>> threeSum2(int[] nums, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        int len = nums.length;
+        if (nums == null || nums.length < 3) {
+            return result;
+        }
+        for (int i = 0; i < len; i++) {
+            if (nums[i] > 0) {
+                break;
+            }
+            if (i > 0 && nums[i] == nums[i -1]) {
+                continue;
+            }
+            int left = i + 1;
+            int right = len - 1;
+            while(right > left) {
+                int sum = nums[i] + nums[right] + nums[left];
+                if (sum == k) {
+                    result.add(Arrays.asList(nums[i],nums[left],nums[right]));
+                    while(left < right && nums[left] == nums[left + 1]) {
+                        left++;
+                    }
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                } else if (sum < k) {
+                    left++;
+                } else if (sum > k){
+                    right--;
+                }
+            }
+        }
+        return result;
+    }
+
     @Test
     public void test() {
-        int[] nums = {-4, -1, -1, 0, 1, 2,-2,1,1};
+        int[] nums = {-4, -1, -1, 0, 1, 2, 2,-2,1,1};
 //        int[] nums = {0,0,0,0};
 //        List<List<Integer>> result = threeSum1(nums);
-        List<List<Integer>> result = threeSum(nums);
+//        List<List<Integer>> result = threeSum(nums);
+        List<List<Integer>> result = threeSum2(nums,0);
         for (List<Integer> items : result) {
             for (Integer item : items) {
                 System.out.print(item + " ");
