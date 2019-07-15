@@ -5,7 +5,7 @@ package com.gerson.jike.tree;
  * @description 二叉树节点
  * @date 2019/7/11.
  */
-public class BinaryTreeNode<T> {
+public class BinaryTreeNode<T extends Comparable> {
 
     /**
      * 值
@@ -14,10 +14,10 @@ public class BinaryTreeNode<T> {
     private BinaryTreeNode left;
     private BinaryTreeNode right;
 
-    public BinaryTreeNode(T val) {
+    public BinaryTreeNode(T val, BinaryTreeNode<T> left, BinaryTreeNode<T> right) {
         this.val = val;
-        this.left = null;
-        this.right = null;
+        this.left = left;
+        this.right = right;
     }
 
     public T getVal() {
@@ -42,6 +42,11 @@ public class BinaryTreeNode<T> {
 
     public void setRight(BinaryTreeNode right) {
         this.right = right;
+    }
+
+
+    public boolean isLeaf() {
+        return this.right == null && this.left == null;
     }
 
     public class Accessor {
