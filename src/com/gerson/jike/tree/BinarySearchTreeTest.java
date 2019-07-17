@@ -59,6 +59,15 @@ public class BinarySearchTreeTest {
         randTree.insert(9);
         return randTree;
     }
+    private BinaryTree<Integer> generateRandTree(int size) {
+        BinaryTree<Integer> randTree = new BinaryRandomTree<>();
+        while (randTree.size() < size) {
+            int random = new Random().nextInt(size);
+            System.out.println("insert:" + random);
+            randTree.insert(random);
+        }
+        return randTree;
+    }
 
 
 
@@ -101,19 +110,24 @@ public class BinarySearchTreeTest {
         } else {
             System.out.println(false);
         }
+        System.out.println("randTree min :" + randTree.findMin());
         System.out.println("randTree max :" + randTree.findMax());
     }
 
     @Test
-    public void testValidateRandMin() {
-        BinaryTree<Integer> randTree = generateRandTree();
+    public void testValidateRandMinMax() {
+        BinaryTree<Integer> randTree = generateRandTree(1000);
+
+        System.out.println("randTree max :" + randTree.findMax());
         System.out.println("randTree min :" + randTree.findMin());
-    }
 
-
-    @Test
-    public void testValidateRandMax() {
-        BinaryTree<Integer> randTree = generateRandTree();
-        System.out.println("randTree min :" + randTree.findMax());
+        BinaryTreeNode<Integer> binaryTreeNode = randTree.findNode(50);
+        System.out.println("randTree contains 998 :" + randTree.contains(998));
+        System.out.println("randTree contains 999 :" + randTree.contains(999));
+        System.out.println("randTree contains 100 :" + randTree.contains(100));
+        System.out.println("randTree contains 10 :" + randTree.contains(10));
+        System.out.println("randTree contains 1 :" + randTree.contains(1));
     }
 }
+
+

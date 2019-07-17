@@ -18,17 +18,17 @@ public class BinaryTreeUtil {
             return true;
         }
         if (rootNode.getLeft() != null && rootNode.getRight() != null) {
-            return rootNode.getVal().compareTo(tree.findMin(rootNode.getLeft()).getVal()) > 0
-                    && rootNode.getVal().compareTo(tree.findMax(rootNode.getRight()).getVal()) < 0
+            return rootNode.getVal().compareTo(tree.findMax(rootNode.getLeft()).getVal()) > 0
+                    && rootNode.getVal().compareTo(tree.findMin(rootNode.getRight()).getVal()) < 0
                     && isBinarySearchTree(tree,rootNode.getRight())
                     && isBinarySearchTree(tree,rootNode.getLeft())
                     ;
         } if (rootNode.getLeft() != null) {
-            return rootNode.getVal().compareTo(tree.findMin(rootNode.getLeft()).getVal()) > 0
+            return rootNode.getVal().compareTo(tree.findMax(rootNode.getLeft()).getVal()) > 0
                     && isBinarySearchTree(tree,rootNode.getLeft())
                     ;
         } else if (rootNode.getRight() != null) {
-            return rootNode.getVal().compareTo(tree.findMax(rootNode.getRight()).getVal()) < 0
+            return rootNode.getVal().compareTo(tree.findMin(rootNode.getRight()).getVal()) < 0
                     && isBinarySearchTree(tree,rootNode.getRight())
                     ;
         }

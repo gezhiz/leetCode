@@ -103,6 +103,10 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
 
     @Override
     public void insert(T data) {
+        if (this.contains(data)) {
+            return;
+        }
+        size++;
         root = insert(data, root);
     }
 
@@ -193,22 +197,29 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
 
     @Override
     public BinaryTreeNode<T> findNode(T data) {
-        BinaryTreeNode<T> curNode = this.root;
-        while(curNode != null) {
-            int compareResult = data.compareTo(curNode.getVal());
-            if (compareResult == 0) {
-                return curNode;
-            } else if (compareResult > 0){
-                curNode = curNode.getRight();
-            } else if (compareResult < 0){
-                curNode = curNode.getLeft();
-            }
+        return findNode(this.root,data);
+    }
+
+    private BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data) {
+        if (node == null) {
+            return null;
         }
-        return null;
+        int compareResult = data.compareTo(node.getVal());
+        BinaryTreeNode<T> result = null;
+        if (compareResult == 0) {
+            result = node;
+        }
+        if (result == null){
+            result = findNode(node.getRight(), data);
+        }
+        if (result == null){
+            result = findNode(node.getLeft(), data);
+        }
+        return result;
     }
 
     @Override
-    public boolean contains(T data) throws Exception {
+    public boolean contains(T data) {
         return findNode(data) != null;
     }
 

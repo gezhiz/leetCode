@@ -287,7 +287,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
     }
 
     @Override
-    public boolean contains(T data) throws Exception {
+    public boolean contains(T data) {
         return findNode(data) != null;
     }
 

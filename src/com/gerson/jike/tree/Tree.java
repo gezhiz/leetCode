@@ -85,7 +85,7 @@ public interface Tree<T extends Comparable> {
      * @param data
      * @return
      */
-    boolean contains(T data) throws Exception;
+    boolean contains(T data);
 
     /**
      * 清空
