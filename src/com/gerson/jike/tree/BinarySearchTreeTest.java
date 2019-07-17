@@ -44,7 +44,7 @@ public class BinarySearchTreeTest {
     @Test
     public void insertRandom() {
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
-        int numSize = 1000;
+        int numSize = 100000;
         while (binarySearchTree.size() < numSize) {
             int random = new Random().nextInt(numSize);
             System.out.println("insert:" + random);
