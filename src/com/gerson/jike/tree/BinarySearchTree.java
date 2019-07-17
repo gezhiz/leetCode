@@ -174,26 +174,32 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
      * @return
      */
     private BinaryTreeNode<T> generateSuccessor(BinaryTreeNode<T> node) {
-        if (node == null || node.getRight() == null) {
+        if (node == null) {
             return null;
         }
-//        if (node.getRight() == null) {
-//            return node.getLeft();
-//        }
-        //从右子树开始寻找
         BinaryTreeNode<T> successor = node.getRight();
-        BinaryTreeNode<T> parent = null;
-        while (successor.getLeft() != null) {
-            parent = successor;
-            successor = successor.getLeft();
+        if (successor != null) {
+            //优先从右子树开始寻找
+            //右子树不为空
+            BinaryTreeNode<T> parent = null;
+            while (successor.getLeft() != null) {
+                parent = successor;
+                successor = successor.getLeft();
+            }
+            if (parent != null) {
+                parent.setLeft(successor.getRight());
+            }
+            if (successor != node.getRight()) {
+                successor.setRight(node.getRight());
+            }
+            successor.setLeft(node.getLeft());
+        } else if (node.getLeft() != null){
+            //左子树不为空
+            return node.getLeft();
+        } else {
+            //叶子节点
+            return null;
         }
-        if (parent != null) {
-            parent.setLeft(successor.getRight());
-        }
-        if (successor != node.getRight()) {
-            successor.setRight(node.getRight());
-        }
-        successor.setLeft(node.getLeft());
         return successor;
     }
 
