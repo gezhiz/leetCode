@@ -5,14 +5,7 @@ package com.gerson.jike.tree;
  * @description todo
  * @date 2019/7/15.
  */
-public class BinarySearchTree<T extends Comparable> implements Tree<T> {
-
-    /**
-     * 根节点
-     */
-    private BinaryTreeNode<T> root;
-
-    private int size;
+public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implements Tree<T> {
 
     @Override
     public boolean isEmpty() {
@@ -109,7 +102,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         if (data == null) {
             throw new RuntimeException("data can not be null!");
         }
-        if (!(findNode(data) == null)) {
+        if ((findNode(data) != null)) {
             return;
         }
         size++;

@@ -12,7 +12,7 @@ import java.util.Random;
 public class BinarySearchTreeTest {
     @Test
     public void testInsert() {
-        BinarySearchTree<Integer> binarySearchTree = generateTree();
+        BinaryTree<Integer> binarySearchTree = generateTree();
         binarySearchTree.remove(3);
 
         binarySearchTree.insert(3);
@@ -32,7 +32,7 @@ public class BinarySearchTreeTest {
 
     }
 
-    private BinarySearchTree<Integer> generateTree() {
+    private BinaryTree<Integer> generateTree() {
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
         binarySearchTree.insert(6);
         binarySearchTree.insert(7);
@@ -45,6 +45,22 @@ public class BinarySearchTreeTest {
         binarySearchTree.insert(9);
         return binarySearchTree;
     }
+
+    private BinaryTree<Integer> generateRandTree() {
+        BinaryTree<Integer> randTree = new BinaryRandomTree<>();
+        randTree.insert(6);
+        randTree.insert(7);
+        randTree.insert(3);
+        randTree.insert(2);
+        randTree.insert(8);
+        randTree.insert(4);
+        randTree.insert(5);
+        randTree.insert(1);
+        randTree.insert(9);
+        return randTree;
+    }
+
+
 
     @Test
     public void insertRandom() {
@@ -70,9 +86,16 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testPreOrder() {
-        BinarySearchTree<Integer> binarySearchTree = generateTree();
+        BinaryTree<Integer> binarySearchTree = generateTree();
         binarySearchTree.preOrder();
         binarySearchTree.inOrder();
         binarySearchTree.postOrder();
+    }
+
+    @Test
+    public void testValidateSearch() {
+        System.out.println(BinaryTreeUtil.isBinarySearchTree(generateTree()));
+        BinaryTree<Integer> randTree = generateRandTree();
+        System.out.println(BinaryTreeUtil.isBinarySearchTree(randTree));
     }
 }
