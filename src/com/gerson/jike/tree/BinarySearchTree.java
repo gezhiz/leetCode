@@ -252,11 +252,11 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
 
     @Override
     public boolean contains(T data) throws Exception {
-        return false;
+        return findNode(data) != null;
     }
 
     @Override
     public void clear() {
-
+        this.root = null;
     }
 }
