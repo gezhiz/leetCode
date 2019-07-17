@@ -69,8 +69,7 @@ public class FindMedianSortedArrays {
             int j = halfLen - i;
             if (i < iMax && nums2[j-1] > nums1[i]) {
                 iMin = i + 1;
-            }
-            else if(i > iMin && nums1[i-1] > nums2[j]) {
+            } else if(i > iMin && nums1[i-1] > nums2[j]) {
                 iMax = i - 1;
             } else {
                 if (i == 0) maxLeft = nums2[j - 1];
