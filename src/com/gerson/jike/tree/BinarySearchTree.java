@@ -138,9 +138,6 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         if (targetNode == this.root) {
             //目标节点是根节点
             BinaryTreeNode<T> successor = generateSuccessor(targetNode);
-            if (successor != null) {
-                findMin(successor).setLeft(this.root.getLeft());
-            }
             this.root = successor;
         } else if (targetNode.isLeaf()) {
             //叶子节点
