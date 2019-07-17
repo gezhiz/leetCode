@@ -12,16 +12,7 @@ import java.util.Random;
 public class BinarySearchTreeTest {
     @Test
     public void testInsert() {
-        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
-        binarySearchTree.insert(6);
-        binarySearchTree.insert(7);
-        binarySearchTree.insert(3);
-        binarySearchTree.insert(2);
-        binarySearchTree.insert(8);
-        binarySearchTree.insert(4);
-        binarySearchTree.insert(5);
-        binarySearchTree.insert(1);
-        binarySearchTree.insert(9);
+        BinarySearchTree<Integer> binarySearchTree = generateTree();
         binarySearchTree.remove(3);
 
         binarySearchTree.insert(3);
@@ -39,6 +30,20 @@ public class BinarySearchTreeTest {
             binarySearchTree.remove(max);
         }
 
+    }
+
+    private BinarySearchTree<Integer> generateTree() {
+        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+        binarySearchTree.insert(6);
+        binarySearchTree.insert(7);
+        binarySearchTree.insert(3);
+        binarySearchTree.insert(2);
+        binarySearchTree.insert(8);
+        binarySearchTree.insert(4);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(1);
+        binarySearchTree.insert(9);
+        return binarySearchTree;
     }
 
     @Test
@@ -61,5 +66,13 @@ public class BinarySearchTreeTest {
 
         System.out.println("max:" + binarySearchTree.findMax());
         System.out.println("min:" + binarySearchTree.findMin());
+    }
+
+    @Test
+    public void testPreOrder() {
+        BinarySearchTree<Integer> binarySearchTree = generateTree();
+        binarySearchTree.preOrder();
+        binarySearchTree.inOrder();
+        binarySearchTree.postOrder();
     }
 }

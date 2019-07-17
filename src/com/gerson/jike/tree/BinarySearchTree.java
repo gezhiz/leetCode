@@ -35,8 +35,21 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
      * @return
      */
     @Override
-    public String preOrder() {
-        return null;
+    public void preOrder() {
+        System.out.println();
+        System.out.println("前根遍历-------------------------start");
+        preOrder(this.root);
+        System.out.println();
+        System.out.println("前根遍历-------------------------end");
+
+    }
+    private void preOrder(BinaryTreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.getVal() + " ");
+        preOrder(node.getLeft());
+        preOrder(node.getRight());
     }
 
     /**
@@ -45,9 +58,24 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
      * @return
      */
     @Override
-    public String inOrder() {
-        return null;
+    public void inOrder() {
+        System.out.println();
+        System.out.println("中根遍历-------------------------start");
+        inOrder(this.root);
+        System.out.println();
+        System.out.println("中根遍历-------------------------end");
     }
+
+    private void inOrder(BinaryTreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.getLeft());
+        System.out.print(node.getVal() + " ");
+        inOrder(node.getRight());
+    }
+
+
 
     /**
      * 后根遍历
@@ -55,13 +83,25 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
      * @return
      */
     @Override
-    public String postOrder() {
-        return null;
+    public void postOrder() {
+        System.out.println();
+        System.out.println("后根遍历-------------------------start");
+        postOrder(this.root);
+        System.out.println();
+        System.out.println("后根遍历-------------------------end");
+    }
+
+    private void postOrder(BinaryTreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.getLeft());
+        postOrder(node.getRight());
+        System.out.print(node.getVal() + " ");
     }
 
     @Override
-    public String levelOrder() {
-        return null;
+    public void levelOrder() {
     }
 
     @Override

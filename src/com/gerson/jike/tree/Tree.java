@@ -29,22 +29,22 @@ public interface Tree<T extends Comparable> {
     /**
      * 先根次序遍历
      */
-    String preOrder();
+    void preOrder();
 
     /**
      * 中根次序遍历
      */
-    String inOrder();
+    void inOrder();
 
     /**
      * 后根次序遍历
      */
-    String postOrder();
+    void postOrder();
 
     /**
      * 层次遍历
      */
-    String levelOrder();
+    void levelOrder();
 
     /**
      * 将data 插入
