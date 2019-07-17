@@ -69,6 +69,10 @@ public interface Tree<T extends Comparable> {
      */
     T findMax();
 
+    BinaryTreeNode<T> findMin(BinaryTreeNode<T> node);
+
+    BinaryTreeNode<T> findMax(BinaryTreeNode<T> node);
+
     /**
      * 根据值找到结点
      * @param data

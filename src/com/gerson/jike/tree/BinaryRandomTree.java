@@ -147,12 +147,48 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
 
     @Override
     public T findMin() {
-        throw new RuntimeException("不支持findMin");
+        return findMin(this.root).getVal();
     }
 
     @Override
     public T findMax() {
-        throw new RuntimeException("不支持findMax");
+        return findMax(this.root).getVal();
+    }
+
+    @Override
+    public BinaryTreeNode<T> findMin(BinaryTreeNode<T> node) {
+        if (node.getLeft() != null && node.getRight() != null) {
+            BinaryTreeNode<T> rMin = findMin(node.getRight());
+            BinaryTreeNode<T> lMin = findMin(node.getLeft());
+            BinaryTreeNode<T> lrMin = rMin.getVal().compareTo(lMin.getVal()) > 0 ? lMin : rMin;
+            return lrMin.getVal().compareTo(node.getVal()) > 0 ? node : lrMin;
+        } else if (node.getRight() != null) {
+            BinaryTreeNode<T> rMin = findMin(node.getRight());
+            return rMin.getVal().compareTo(node.getVal()) > 0 ? node : rMin;
+        } else if (node.getLeft() != null) {
+            BinaryTreeNode<T> lMin = findMin(node.getLeft());
+            return lMin.getVal().compareTo(node.getVal()) > 0 ? node : lMin;
+        } else {
+            return node;
+        }
+    }
+
+    @Override
+    public BinaryTreeNode<T> findMax(BinaryTreeNode<T> node) {
+        if (node.getLeft() != null && node.getRight() != null) {
+            BinaryTreeNode<T> rMax = findMax(node.getRight());
+            BinaryTreeNode<T> lMax = findMax(node.getLeft());
+            BinaryTreeNode<T> lrMax = rMax.getVal().compareTo(lMax.getVal()) < 0 ? lMax : rMax;
+            return lrMax.getVal().compareTo(node.getVal()) < 0 ? node : lrMax;
+        } else if (node.getRight() != null) {
+            BinaryTreeNode<T> rMax = findMax(node.getRight());
+            return rMax.getVal().compareTo(node.getVal()) < 0 ? node : rMax;
+        } else if (node.getLeft() != null) {
+            BinaryTreeNode<T> lMax = findMax(node.getLeft());
+            return lMax.getVal().compareTo(node.getVal()) < 0 ? node : lMax;
+        } else {
+            return node;
+        }
     }
 
     @Override

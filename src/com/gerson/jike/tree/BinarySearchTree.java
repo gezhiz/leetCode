@@ -47,6 +47,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
 
     /**
      * 中根遍历
+     * 二叉搜索树的中根遍历的结果是一个递增的数组
      *
      * @return
      */
@@ -233,7 +234,8 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         return successor;
     }
 
-    private BinaryTreeNode<T> findMin(BinaryTreeNode<T> node) {
+    @Override
+    public BinaryTreeNode<T> findMin(BinaryTreeNode<T> node) {
         if (node == null) {
             return null;
         }
@@ -253,6 +255,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         return curNode != null ? curNode.getVal() : null;
     }
 
+    @Override
     public BinaryTreeNode findMax(BinaryTreeNode<T> root) {
         if (root == null) {
             return null;

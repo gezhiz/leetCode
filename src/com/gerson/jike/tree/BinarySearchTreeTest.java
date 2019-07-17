@@ -96,6 +96,24 @@ public class BinarySearchTreeTest {
     public void testValidateSearch() {
         System.out.println(BinaryTreeUtil.isBinarySearchTree(generateTree()));
         BinaryTree<Integer> randTree = generateRandTree();
-        System.out.println(BinaryTreeUtil.isBinarySearchTree(randTree));
+        if (BinaryTreeUtil.isBinarySearchTree(randTree)) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
+        System.out.println("randTree max :" + randTree.findMax());
+    }
+
+    @Test
+    public void testValidateRandMin() {
+        BinaryTree<Integer> randTree = generateRandTree();
+        System.out.println("randTree min :" + randTree.findMin());
+    }
+
+
+    @Test
+    public void testValidateRandMax() {
+        BinaryTree<Integer> randTree = generateRandTree();
+        System.out.println("randTree min :" + randTree.findMax());
     }
 }

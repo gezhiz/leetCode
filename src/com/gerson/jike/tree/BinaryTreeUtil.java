@@ -13,23 +13,23 @@ public class BinaryTreeUtil {
      * @param <T>
      * @return
      */
-    private static <T extends Comparable> boolean isBinarySearchTree(BinaryTreeNode<T> rootNode) {
+    private static <T extends Comparable> boolean isBinarySearchTree(BinaryTree<T> tree, BinaryTreeNode<T> rootNode) {
         if (rootNode == null) {
             return true;
         }
         if (rootNode.getLeft() != null && rootNode.getRight() != null) {
-            return rootNode.getVal().compareTo(rootNode.getLeft().getVal()) > 0
-                    && rootNode.getVal().compareTo(rootNode.getRight().getVal()) < 0
-                    && isBinarySearchTree(rootNode.getRight())
-                    && isBinarySearchTree(rootNode.getLeft())
+            return rootNode.getVal().compareTo(tree.findMin(rootNode.getLeft()).getVal()) > 0
+                    && rootNode.getVal().compareTo(tree.findMax(rootNode.getRight()).getVal()) < 0
+                    && isBinarySearchTree(tree,rootNode.getRight())
+                    && isBinarySearchTree(tree,rootNode.getLeft())
                     ;
         } if (rootNode.getLeft() != null) {
-            return rootNode.getVal().compareTo(rootNode.getLeft().getVal()) > 0
-                    && isBinarySearchTree(rootNode.getLeft())
+            return rootNode.getVal().compareTo(tree.findMin(rootNode.getLeft()).getVal()) > 0
+                    && isBinarySearchTree(tree,rootNode.getLeft())
                     ;
         } else if (rootNode.getRight() != null) {
-            return rootNode.getVal().compareTo(rootNode.getRight().getVal()) < 0
-                    && isBinarySearchTree(rootNode.getRight())
+            return rootNode.getVal().compareTo(tree.findMax(rootNode.getRight()).getVal()) < 0
+                    && isBinarySearchTree(tree,rootNode.getRight())
                     ;
         }
         return true;
@@ -45,6 +45,7 @@ public class BinaryTreeUtil {
         if (tree == null || tree.getRoot() == null) {
             return true;
         }
-        return isBinarySearchTree(tree.getRoot());
+        return isBinarySearchTree(tree, tree.getRoot());
     }
+
 }
