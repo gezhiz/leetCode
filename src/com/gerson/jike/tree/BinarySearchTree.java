@@ -307,7 +307,21 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
 
     @Override
     public BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
-        throw new RuntimeException("不支持该方法");
+        return lowestCommonAncestor(this.root, p, q);
+    }
+
+    private BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> rootNode, BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
+        if (p.getVal().compareTo(q.getVal()) > 0) {
+            //保证p是更小的节点
+            return lowestCommonAncestor(rootNode,q,p);
+        }
+        if (rootNode.getVal().compareTo(q.getVal()) > 0 && rootNode.getVal().compareTo(p.getVal()) > 0) {
+            return lowestCommonAncestor(rootNode.getLeft(),p,q);
+        }
+        if (rootNode.getVal().compareTo(q.getVal()) < 0 && rootNode.getVal().compareTo(p.getVal()) < 0){
+            return lowestCommonAncestor(rootNode.getRight(),p,q);
+        }
+        return rootNode;
     }
 
 }

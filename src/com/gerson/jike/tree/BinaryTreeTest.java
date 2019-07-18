@@ -9,10 +9,10 @@ import java.util.Random;
  * @description todo
  * @date 2019/7/15.
  */
-public class BinarySearchTreeTest {
+public class BinaryTreeTest {
     @Test
     public void testInsert() {
-        BinaryTree<Integer> binarySearchTree = generateTree();
+        BinaryTree<Integer> binarySearchTree = generateSearchTree();
         binarySearchTree.remove(3);
 
         binarySearchTree.insert(3);
@@ -32,7 +32,7 @@ public class BinarySearchTreeTest {
 
     }
 
-    private BinaryTree<Integer> generateTree() {
+    private BinaryTree<Integer> generateSearchTree() {
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
         binarySearchTree.insert(6);
         binarySearchTree.insert(7);
@@ -95,7 +95,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testPreOrder() {
-        BinaryTree<Integer> binarySearchTree = generateTree();
+        BinaryTree<Integer> binarySearchTree = generateSearchTree();
         binarySearchTree.preOrder();
         binarySearchTree.inOrder();
         binarySearchTree.postOrder();
@@ -103,7 +103,7 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testValidateSearch() {
-        BinaryTree<Integer> binarySearchTree = generateTree();
+        BinaryTree<Integer> binarySearchTree = generateSearchTree();
         System.out.println(BinaryTreeUtil.isBinarySearchTree(binarySearchTree));
         BinaryTreeNode<Integer> binaryTreeNode = binarySearchTree.getRoot();
         while(binaryTreeNode.getLeft() != null) {
@@ -151,18 +151,20 @@ public class BinarySearchTreeTest {
             left = left.getLeft();
         }
         BinaryTreeNode<Integer> resultNode = randTree.lowestCommonAncestor(right,left);
-        if (resultNode != null) {
-            assert resultNode == randTree.getRoot();
-            System.out.println("父节点的值为：" + resultNode.getVal());
-        } else {
-            System.out.println("未找到该节点");
-        }
+        assert resultNode == randTree.getRoot();
 
         right = randTree.findNode(8);
         left = randTree.findNode(9);
         resultNode = randTree.lowestCommonAncestor(right,left);
         assert randTree.findNode(resultNode,right.getVal()) != null;
         assert randTree.findNode(resultNode,left.getVal()) != null;
+
+        BinaryTree<Integer> searchTree = generateSearchTree();
+        right = searchTree.findNode(8);
+        left = searchTree.findNode(9);
+        resultNode = searchTree.lowestCommonAncestor(right,left);
+        assert searchTree.findNode(resultNode,right.getVal()) != null;
+        assert searchTree.findNode(resultNode,left.getVal()) != null;
     }
 }
 

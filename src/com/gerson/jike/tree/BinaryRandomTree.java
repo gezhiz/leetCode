@@ -200,6 +200,7 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
         return findNode(this.root,data);
     }
 
+    @Override
     public BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data) {
         if (node == null) {
             return null;
@@ -245,17 +246,17 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
          反之，如果左子树为空，说明两个节点一定在右子树；
          同理如果右子树为空，说明两个节点一定在左子树。
      */
-     private BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> root, BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
+     private BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> rootNode, BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
          //递归之前会有一个出口
-        if (root == null || root == p || root == q) {
-            return root;
+        if (rootNode == null || rootNode == p || rootNode == q) {
+            return rootNode;
         }
-        BinaryTreeNode<T> left = lowestCommonAncestor(root.getLeft(), p, q);
-        BinaryTreeNode<T> right = lowestCommonAncestor(root.getRight(), p, q);
+        BinaryTreeNode<T> left = lowestCommonAncestor(rootNode.getLeft(), p, q);
+        BinaryTreeNode<T> right = lowestCommonAncestor(rootNode.getRight(), p, q);
         //递归函数之后的代码都是为了继续递归
         if (left != null && right != null) {
-            //左子树右子树均存找到，则root就是需要的结果
-            return root;
+            //左子树右子树均存找到，则rootNode就是需要的结果
+            return rootNode;
         }
 
         if (left == null) {
@@ -266,7 +267,7 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
             //右子树为空，则在左子树
             return left;
         }
-        return root;
+        return rootNode;
     }
 
     @Override
