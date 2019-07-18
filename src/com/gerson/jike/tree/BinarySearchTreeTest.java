@@ -103,7 +103,14 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testValidateSearch() {
-        System.out.println(BinaryTreeUtil.isBinarySearchTree(generateTree()));
+        BinaryTree<Integer> binarySearchTree = generateTree();
+        System.out.println(BinaryTreeUtil.isBinarySearchTree(binarySearchTree));
+        BinaryTreeNode<Integer> binaryTreeNode = binarySearchTree.getRoot();
+        while(binaryTreeNode.getLeft() != null) {
+            binaryTreeNode = binaryTreeNode.getLeft();
+        }
+        binaryTreeNode.setVal(Integer.MAX_VALUE);
+        System.out.println("替换后的binarySearchTree，是否为二叉搜索树:" + BinaryTreeUtil.isBinarySearchTree(binarySearchTree));
         BinaryTree<Integer> randTree = generateRandTree();
         if (BinaryTreeUtil.isBinarySearchTree(randTree)) {
             System.out.println(true);
