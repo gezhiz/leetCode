@@ -311,14 +311,12 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
     }
 
     private BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> rootNode, BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
-        if (p.getVal().compareTo(q.getVal()) > 0) {
-            //保证p是更小的节点
-            return lowestCommonAncestor(rootNode,q,p);
-        }
         if (rootNode.getVal().compareTo(q.getVal()) > 0 && rootNode.getVal().compareTo(p.getVal()) > 0) {
+            //比p q都大，寻找左子树
             return lowestCommonAncestor(rootNode.getLeft(),p,q);
         }
         if (rootNode.getVal().compareTo(q.getVal()) < 0 && rootNode.getVal().compareTo(p.getVal()) < 0){
+            //比p q都小，寻找右子树
             return lowestCommonAncestor(rootNode.getRight(),p,q);
         }
         return rootNode;
