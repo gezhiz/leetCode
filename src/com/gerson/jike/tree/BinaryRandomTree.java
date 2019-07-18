@@ -200,14 +200,14 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
         return findNode(this.root,data);
     }
 
-    private BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data) {
+    public BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data) {
         if (node == null) {
             return null;
         }
         int compareResult = data.compareTo(node.getVal());
         BinaryTreeNode<T> result = null;
         if (compareResult == 0) {
-            result = node;
+            return node;
         }
         if (result == null){
             result = findNode(node.getRight(), data);
@@ -227,5 +227,50 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
     public void clear() {
         size = 0;
         this.root = null;
+    }
+
+
+    /**
+     * https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+     * 寻找两个节点的最近公共祖先
+     *   * 所有节点的值都是唯一的。
+     * p、q 为不同节点且均存在于给定的二叉树中。(p q 均存在且唯一)
+     * 寻找两个节点的最近公共祖先
+     *
+     * 解题核心：
+     *  递归，找p或q
+     *
+     *
+     *  递归搜索左右子树，如果左子树和右子树都不为空，说明最近父节点一定在根节点。
+         反之，如果左子树为空，说明两个节点一定在右子树；
+         同理如果右子树为空，说明两个节点一定在左子树。
+     */
+     private BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> root, BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
+         //递归之前会有一个出口
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        BinaryTreeNode<T> left = lowestCommonAncestor(root.getLeft(), p, q);
+        BinaryTreeNode<T> right = lowestCommonAncestor(root.getRight(), p, q);
+        //递归函数之后的代码都是为了继续递归
+        if (left != null && right != null) {
+            //左子树右子树均存找到，则root就是需要的结果
+            return root;
+        }
+
+        if (left == null) {
+            //左子树为空,节点在右子树
+            return right;
+        }
+        if (right == null){
+            //右子树为空，则在左子树
+            return left;
+        }
+        return root;
+    }
+
+    @Override
+    public BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
+         return lowestCommonAncestor(this.root,p,q);
     }
 }

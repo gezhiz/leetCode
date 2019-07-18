@@ -36,6 +36,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         System.out.println("前根遍历-------------------------end");
 
     }
+
     private void preOrder(BinaryTreeNode<T> node) {
         if (node == null) {
             return;
@@ -68,7 +69,6 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         System.out.print(node.getVal() + " ");
         inOrder(node.getRight());
     }
-
 
 
     /**
@@ -201,6 +201,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
 
     /**
      * 重构node子树,找到node右子树中最小的节点作为根构造一棵树
+     *
      * @param node
      * @return
      */
@@ -224,7 +225,7 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
                 successor.setRight(node.getRight());
             }
             successor.setLeft(node.getLeft());
-        } else if (node.getLeft() != null){
+        } else if (node.getLeft() != null) {
             //左子树不为空
             return node.getLeft();
         } else {
@@ -272,14 +273,20 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
 
     @Override
     public BinaryTreeNode<T> findNode(T data) {
-        BinaryTreeNode<T> curNode = this.root;
-        while(curNode != null) {
+        return findNode(this.root,data);
+    }
+
+
+    @Override
+    public BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data) {
+        BinaryTreeNode<T> curNode = node;
+        while (curNode != null) {
             int compareResult = data.compareTo(curNode.getVal());
             if (compareResult == 0) {
                 return curNode;
-            } else if (compareResult > 0){
+            } else if (compareResult > 0) {
                 curNode = curNode.getRight();
-            } else if (compareResult < 0){
+            } else if (compareResult < 0) {
                 curNode = curNode.getLeft();
             }
         }
@@ -296,4 +303,11 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         size = 0;
         this.root = null;
     }
+
+
+    @Override
+    public BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
+        throw new RuntimeException("不支持该方法");
+    }
+
 }

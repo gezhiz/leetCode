@@ -22,4 +22,8 @@ public abstract class BinaryTree<T extends Comparable> implements Tree<T> {
     public int getSize() {
         return size;
     }
+
+    public abstract BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q);
+
+    public abstract BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data);
 }

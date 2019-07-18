@@ -117,6 +117,8 @@ public class BinarySearchTreeTest {
         } else {
             System.out.println(false);
         }
+        System.out.println("binarySearchTree min :" + binarySearchTree.findMin());
+        System.out.println("binarySearchTree max :" + binarySearchTree.findMax());
         System.out.println("randTree min :" + randTree.findMin());
         System.out.println("randTree max :" + randTree.findMax());
     }
@@ -134,6 +136,33 @@ public class BinarySearchTreeTest {
         System.out.println("randTree contains 100 :" + randTree.contains(100));
         System.out.println("randTree contains 10 :" + randTree.contains(10));
         System.out.println("randTree contains 1 :" + randTree.contains(1));
+    }
+
+    @Test
+    public void testLowestCommonAncestor() {
+        BinaryTree<Integer> randTree = generateRandTree();
+        final BinaryTreeNode<Integer> root = randTree.getRoot();
+        BinaryTreeNode<Integer> right = root.getRight();
+        while (right != null && right.getRight() != null) {
+            right = right.getRight();
+        }
+        BinaryTreeNode<Integer> left = randTree.getRoot().getLeft();
+        while (left != null && left.getLeft() != null) {
+            left = left.getLeft();
+        }
+        BinaryTreeNode<Integer> resultNode = randTree.lowestCommonAncestor(right,left);
+        if (resultNode != null) {
+            assert resultNode == randTree.getRoot();
+            System.out.println("父节点的值为：" + resultNode.getVal());
+        } else {
+            System.out.println("未找到该节点");
+        }
+
+        right = randTree.findNode(8);
+        left = randTree.findNode(9);
+        resultNode = randTree.lowestCommonAncestor(right,left);
+        assert randTree.findNode(resultNode,right.getVal()) != null;
+        assert randTree.findNode(resultNode,left.getVal()) != null;
     }
 }
 
