@@ -1,4 +1,4 @@
-package com.gerson.jike;
+package com.gerson.jike.recuration;
 
 import org.junit.Test;
 
