@@ -1,4 +1,4 @@
-package com.gerson.designPattern.strategy;
+package com.gerson.design.strategy;
 
 /**
  * 家养的鸭

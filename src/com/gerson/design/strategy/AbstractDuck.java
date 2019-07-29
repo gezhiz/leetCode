@@ -1,4 +1,4 @@
-package com.gerson.designPattern.strategy;
+package com.gerson.design.strategy;
 
 /**
  * Created by gezz on 2019/3/14.

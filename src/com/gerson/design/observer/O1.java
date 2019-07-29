@@ -1,4 +1,4 @@
-package com.gerson.designPattern.observer;
+package com.gerson.design.observer;
 
 /**
  * Created by gezz on 2019/3/14.
