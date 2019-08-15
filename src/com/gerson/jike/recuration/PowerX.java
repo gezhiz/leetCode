@@ -4,7 +4,7 @@ import org.junit.Test;
 
 /**
  * @author gezz
- * @description todo
+ * @description 求x的n次方
  * @date 2019/7/19.
  */
 public class PowerX {
