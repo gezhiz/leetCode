@@ -72,6 +72,21 @@ public class MyLinkedList<T> {
         head = pre;
     }
 
+    public void reverse1() {
+        Node p = head;//p记录每一次循环中的头结点
+        Node c = head.next;//c 记录需要变成头的节点
+        Node t = null;//t记录c的下一个
+        tail = head;
+        do {
+            t = c.next;
+            c.next = p;
+            p = c;//生成新的头
+            c = t;
+        } while (c != null);
+        head.next = null;
+        head = p;
+    }
+
     /**
      * 两两结点反转
      * 1->2->3->4     =>   2->1->4->3
@@ -102,6 +117,51 @@ public class MyLinkedList<T> {
         tail = pre;
     }
 
+
+    /**
+     * 两两反转
+     */
+    public void doubleReverse2() {
+        if (size <= 1) {
+            return;
+        }
+        Node pp = null;
+        Node p = head;
+        head = p.next;
+        Node q = null;
+        do {
+            q = p.next;
+            if (pp != null) {
+                pp.next = q;
+            }
+            p.next = q.next;
+            //置换p 和 q
+            q.next = p;
+            //记录上一次置换成功后的尾节点
+            pp = p;
+            p = p.next;
+        } while (p != null && p.next != null);
+        tail = p;
+    }
+
+    public void doubleReverse3() {
+        Node a = head;
+        Node b = null;
+        Node p = null;
+        while (a != null && a.next != null) {
+            b = a.next;
+            if (p == null) {
+                head = b;
+            } else {
+                p.next = b;
+            }
+            a.next = b.next;
+            b.next = a;
+            p = a;
+            a = a.next;
+        }
+    }
+
     /**
      * 制造链表环
      * 制造end位置指向start位置的循环链表
@@ -121,7 +181,6 @@ public class MyLinkedList<T> {
         tail.setNext(startNode);
 
     }
-
 
     /**
      * set集合记录法：

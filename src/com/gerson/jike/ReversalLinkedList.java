@@ -22,7 +22,7 @@ public class ReversalLinkedList {
         myLinkedList.add(6);
         myLinkedList.add(7);
         myLinkedList.add(8);
-        myLinkedList.reverse();
+        myLinkedList.reverse1();
         Iterator<Integer> iterator = myLinkedList.getIterator();
         while(iterator.hasNext()) {
             System.out.println(iterator.next() + " ");
@@ -32,7 +32,7 @@ public class ReversalLinkedList {
     }
 
     @Test
-    public void testrDoubleReversal() {
+    public void testDoubleReversal() {
         MyLinkedList<Integer> myLinkedList = new MyLinkedList<>();
         myLinkedList.add(1);
         myLinkedList.add(2);
@@ -42,6 +42,25 @@ public class ReversalLinkedList {
         myLinkedList.add(6);
         myLinkedList.add(7);
         myLinkedList.doubleReverse();
+        Iterator<Integer> iterator = myLinkedList.getIterator();
+        while(iterator.hasNext()) {
+            System.out.println(iterator.next() + " ");
+        }
+        System.out.println("链表长度:" + myLinkedList.getSize());
+
+    }
+    @Test
+    public void testDoubleReversal2() {
+        MyLinkedList<Integer> myLinkedList = new MyLinkedList<>();
+        myLinkedList.add(1);
+        myLinkedList.add(2);
+        myLinkedList.add(3);
+        myLinkedList.add(4);
+        myLinkedList.add(5);
+        myLinkedList.add(6);
+        myLinkedList.add(7);
+        myLinkedList.add(8);
+        myLinkedList.doubleReverse3();
         Iterator<Integer> iterator = myLinkedList.getIterator();
         while(iterator.hasNext()) {
             System.out.println(iterator.next() + " ");
