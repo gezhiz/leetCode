@@ -1,7 +1,9 @@
 package com.gerson.jike.tree;
 
+import com.gerson.leetcode.easy.BinarySearch;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -122,6 +124,29 @@ public class BinaryTreeTest {
         System.out.println("randTree min :" + randTree.findMin());
         System.out.println("randTree max :" + randTree.findMax());
     }
+    @Test
+    public void testIsBinSearchTree() {
+        BinaryTree<Integer> binarySearchTree = generateSearchTree();
+        System.out.println(BinaryTreeUtil.isBinSearchTree(binarySearchTree));
+        BinaryTreeNode<Integer> binaryTreeNode = binarySearchTree.getRoot();
+        while(binaryTreeNode.getLeft() != null) {
+            binaryTreeNode = binaryTreeNode.getLeft();
+        }
+        binaryTreeNode.setVal(Integer.MAX_VALUE);
+        System.out.println("替换后的binarySearchTree，是否为二叉搜索树:" + BinaryTreeUtil.isBinSearchTree(binarySearchTree));
+        BinaryTree<Integer> randTree = generateRandTree();
+        if (BinaryTreeUtil.isBinSearchTree(randTree)) {
+            System.out.println("randTree 是为排序树");
+        } else {
+            System.out.println("randTree 不是排序树");
+        }
+        System.out.println("binarySearchTree min :" + binarySearchTree.findMin());
+        System.out.println("binarySearchTree max :" + binarySearchTree.findMax());
+        System.out.println("randTree min :" + randTree.findMin());
+        System.out.println("randTree max :" + randTree.findMax());
+    }
+
+
 
     @Test
     public void testValidateRandMinMax() {
@@ -166,6 +191,36 @@ public class BinaryTreeTest {
         assert searchTree.findNode(resultNode,right.getVal()) != null;
         assert searchTree.findNode(resultNode,left.getVal()) != null;
     }
+
+    @Test
+    public void testBreadthSearch() {
+        BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree();
+        List<Integer> searchResult = searchTree.breadthSearch();
+        for (Integer i : searchResult) {
+            System.out.println(i + " ");
+        }
+        System.out.println("遍历结束");
+    }
+    @Test
+    public void testDeapSearch() {
+        BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree();
+        List<Integer> searchResult = searchTree.deapSearch();
+        for (Integer i : searchResult) {
+            System.out.println(i + " ");
+        }
+        System.out.println("遍历结束");
+    }
+
+    @Test
+    public void testDeapSearchStack() {
+        BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree();
+        List<Integer> searchResult = searchTree.deapSearch_Stack();
+        for (Integer i : searchResult) {
+            System.out.println(i + " ");
+        }
+        System.out.println("遍历结束");
+    }
+
 }
 
 

@@ -1,7 +1,9 @@
 package com.gerson.jike;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 解答方案2，3中，主要是采用空间换取时间的方法，采用hashmap巧妙的解答了此算法
@@ -36,13 +38,11 @@ public class TwoSums {
         int[] result = new int[2];
         Map<Integer,Integer> numsMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < numLength; i++) {
-            numsMap.put(nums[i],i);
-        }
-        for (int i = 0; i < numLength; i++) {
             int need = target - nums[i];
             if (numsMap.containsKey(need)) {
                 return new int[]{need,nums[i]};
             }
+            numsMap.put(nums[i],i);
         }
         return result;
     }
@@ -50,15 +50,15 @@ public class TwoSums {
     public static int[] twoSum3(int[] nums, int target) {
         int numLength = nums.length;
         int[] result = new int[2];
-        Map<Integer,Integer> numsMap = new HashMap<Integer, Integer>();
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < numLength; i++) {
             int need = target - nums[i];
-            if (numsMap.containsKey(need)) {
+            if (set.contains(need)) {
                 return new int[]{need,nums[i]};
             }
-            numsMap.put(nums[i],i);
+            set.add(nums[i]);
         }
-        return result;
+        return null;
     }
 
 
@@ -70,11 +70,11 @@ public class TwoSums {
         System.out.println(result[0]);
         System.out.println(result[1]);
 
-        int[] result2 = twoSum1(nums,9);
+        int[] result2 = twoSum2(nums,9);
         System.out.println(result2[0]);
         System.out.println(result2[1]);
 
-        int[] result3 = twoSum1(nums,9);
+        int[] result3 = twoSum3(nums,9);
         System.out.println(result3[0]);
         System.out.println(result3[1]);
     }

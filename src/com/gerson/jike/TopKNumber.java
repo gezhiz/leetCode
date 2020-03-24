@@ -12,7 +12,7 @@ import java.util.Queue;
  * @description 得到数组中第k大的数
  * @date 2019/6/20.
  */
-public class FrontKNumber {
+public class TopKNumber {
 
     public int getFrontK(List<Integer> array, int k) {
         Queue<Integer> priorityQueue = new PriorityQueue<>(k);

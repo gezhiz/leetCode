@@ -1,5 +1,12 @@
 package com.gerson.jike.tree;
 
+import com.gerson.leetcode.structure.MyStack;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+
 /**
  * @author gezz
  * @description todo
@@ -305,6 +312,12 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
     }
 
 
+    /**
+     * 最近公共父节点
+     * @param p
+     * @param q
+     * @return
+     */
     @Override
     public BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q) {
         return lowestCommonAncestor(this.root, p, q);
@@ -314,12 +327,74 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         if (rootNode.getVal().compareTo(q.getVal()) > 0 && rootNode.getVal().compareTo(p.getVal()) > 0) {
             //比p q都大，寻找左子树
             return lowestCommonAncestor(rootNode.getLeft(),p,q);
-        }
-        if (rootNode.getVal().compareTo(q.getVal()) < 0 && rootNode.getVal().compareTo(p.getVal()) < 0){
+        } else if (rootNode.getVal().compareTo(q.getVal()) < 0 && rootNode.getVal().compareTo(p.getVal()) < 0){
             //比p q都小，寻找右子树
             return lowestCommonAncestor(rootNode.getRight(),p,q);
         }
         return rootNode;
+    }
+
+    /**
+     * 广度有限搜索算法
+     */
+    public List<T> breadthSearch() {
+        List result = new ArrayList<>(size());
+        Queue<BinaryTreeNode<T>> queue = new ArrayBlockingQueue<BinaryTreeNode<T>>(size());
+        BinaryTreeNode<T> root = this.root;
+        queue.add(root);
+        while (queue.size() > 0) {
+            BinaryTreeNode node = queue.poll();
+            result.add(node.getVal());
+            if (node.getLeft() != null) {
+                queue.add(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                queue.add(node.getRight());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 深度有限搜索算法 使用栈
+     */
+    public List<T> deapSearch_Stack() {
+        List result = new ArrayList<>(size());
+        MyStack<BinaryTreeNode<T>> stack = new MyStack<BinaryTreeNode<T>>();
+        BinaryTreeNode<T> root = this.root;
+        stack.push(root);
+        BinaryTreeNode nodeItem;
+        while ((nodeItem = stack.pop()) != null) {
+            result.add(nodeItem.getVal());
+
+            if (nodeItem.getRight() != null) {
+                stack.push(nodeItem.getRight());
+            }
+            if (nodeItem.getLeft() != null) {
+                stack.push(nodeItem.getLeft());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 深度优先遍历算法,递归实现
+     * @return
+     */
+    public List<T> deapSearch() {
+        List result = new ArrayList<>(size());
+        deapSearchHelp(result, this.root);
+        return result;
+    }
+
+    private void deapSearchHelp(List result, BinaryTreeNode node) {
+        result.add(node.getVal());
+        if (node.getLeft() != null) {
+            deapSearchHelp(result, node.getLeft());
+        }
+        if (node.getRight() != null) {
+            deapSearchHelp(result, node.getRight());
+        }
     }
 
 }

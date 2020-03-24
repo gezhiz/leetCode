@@ -12,7 +12,7 @@ import java.util.Objects;
  * @description 判断括号的有效性
  * @date 2019/6/18.
  */
-public class ValidParentheses {
+public class Validbracket {
 
     public static Map<Character,Character> mapper = new HashMap<>();
     static {

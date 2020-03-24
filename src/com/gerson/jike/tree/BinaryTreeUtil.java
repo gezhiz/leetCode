@@ -48,4 +48,34 @@ public class BinaryTreeUtil {
         return isBinarySearchTree(tree, tree.getRoot());
     }
 
+
+    /**
+     * 中序遍历的方法，递归判定是否为排序树
+     * 核心：
+     * 中序遍历的递归过程，反复判断每一个节点是否符合左节点是否小于根，右节点是否大于根
+     * @param tree
+     * @param <T>
+     * @return
+     */
+    public static<T extends Comparable> boolean isBinSearchTree(BinaryTree tree) {
+        if (tree == null || tree.getRoot() == null) {
+            return true;
+        }
+        return isBinSearchTree(tree.getRoot());
+    }
+
+    private static <T extends Comparable> boolean isBinSearchTree(BinaryTreeNode<T> root) {
+        if (root == null) {
+            return true;
+        }
+        BinaryTreeNode<T> left = root.getLeft();
+        BinaryTreeNode<T> right = root.getRight();
+        if (left != null && left.getVal().compareTo(root.getVal()) > 0) {
+            return false;
+        }
+        if (right != null && right.getVal().compareTo(root.getVal()) < 0) {
+            return false;
+        }
+        return isBinSearchTree(root.getLeft()) && isBinSearchTree(root.getRight());
+    }
 }

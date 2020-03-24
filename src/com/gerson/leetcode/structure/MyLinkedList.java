@@ -207,9 +207,9 @@ public class MyLinkedList<T> {
     public boolean hasLoop2() {
         Node<T> slow = head;
         Node<T> fast = head;
-        while(slow != null && fast != null && fast.getNext() != null) {
-            slow = slow.getNext();
-            fast = fast.getNext().getNext();
+        while(slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
             if (fast == slow) {
                 return true;
             }

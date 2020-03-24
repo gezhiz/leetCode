@@ -42,7 +42,7 @@ public class MaxSlidingWindow {
     @Test
     public void test1() {
         int[] nums = {9,2,9,4,10,54,1,99,78,2,4,5,2,33,45,2,4,5,6,5,8,234};
-        int[] result = maxSlidingWindow(nums,5);
+        int[] result = maxNumInWindowImprove(nums,5);
         if (result == null) {
             return;
         }
@@ -54,8 +54,8 @@ public class MaxSlidingWindow {
     /**
      * 核心点：
      * 1、使用双端队列
-     * 2、队里里存放数组下标，下标可以用来判断元素是否在滑动窗口内部，还可以获取到元素本身
-     * 3、队列里一直保持最左边的数是最大值（通过每次入队时，如果右边有比当前小的数，则从右边出队列）
+     * 2、队列里存放数组下标，下标可以用来判断元素是否在滑动窗口内部，还可以获取到元素本身
+     * 3、队列里一直保持最左边的数是最大值（通过每次入队时，把右侧比）
      * @param nums
      * @param k
      * @return
@@ -64,13 +64,13 @@ public class MaxSlidingWindow {
         if (k == 0 || nums == null) {
             return new int[0];
         }
+        //记录nums数组的下标
         Deque<Integer> arrayDeque = new ArrayDeque<>(k);
         int[] result = new int[nums.length - k + 1];
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 2; i < nums.length; i++) {
             int item = nums[i];
-            //判断最大值是否在窗口内部
             if (arrayDeque.size() > 0 && arrayDeque.getFirst() <= i - k) {
-                //无效
+                //滑动窗口把最大值替换出去了
                 arrayDeque.pollFirst();
             }
             while (arrayDeque.size() > 0 && item >= nums[arrayDeque.getLast()]) {
@@ -81,6 +81,35 @@ public class MaxSlidingWindow {
             if (i >= k - 1) {
                 result[i - k + 1] = nums[arrayDeque.getFirst()];
             }
+        }
+        return result;
+    }
+
+    /**
+     * i 从k-1位置开始索引
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int[] maxNumInWindowImprove(int[] nums, int k) {
+        if (k == 0 || nums == null || nums.length < k -1) {
+            return new int[0];
+        }
+        //记录nums数组的下标
+        Deque<Integer> arrayDeque = new ArrayDeque<>(k);
+        int[] result = new int[nums.length - k + 1];
+        for (int i = k - 1; i < nums.length; i++) {
+            int item = nums[i];
+            if (arrayDeque.size() > 0 && arrayDeque.getFirst() <= i - k) {
+                //滑动窗口把最大值替换出去了
+                arrayDeque.pollFirst();
+            }
+            while (arrayDeque.size() > 0 && item >= nums[arrayDeque.getLast()]) {
+                arrayDeque.pollLast();
+            }
+            //入队列
+            arrayDeque.addLast(i);
+            result[i - k + 1] = nums[arrayDeque.getFirst()];
         }
         return result;
     }

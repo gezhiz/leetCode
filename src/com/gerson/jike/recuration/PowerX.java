@@ -96,15 +96,27 @@ public class PowerX {
         return pow;
     }
 
+    public double power4(double x, int n) {
+        if (n == 0) {
+            return 1;
+        } else if(n == 1) {
+            return x;
+        } else if(n % 2 == 0) {
+            return power4(x * x, n / 2);
+        } else {
+            //转换成偶数的方式求解
+            return power4(x , n -1) * x;
+        }
+    }
+
     @Test
     public void test() {
-        double startTime = System.currentTimeMillis();
         System.out.println(power(2, 10));
-        double endTime1 = System.currentTimeMillis();
-        System.out.println(endTime1 - startTime);
         System.out.println(power1(2, 10));
-        System.out.println(System.currentTimeMillis() - endTime1);
         System.out.println(power2(2, 10));
         System.out.println(power3(2, 10));
+
+        System.out.println(power4(2, 10));
+
     }
 }
