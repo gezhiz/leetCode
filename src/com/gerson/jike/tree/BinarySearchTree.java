@@ -356,6 +356,33 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
     }
 
     /**
+     * 广度有限搜索算法 :层级遍历
+     */
+    public List<List<T>> breadthLevelOrder() {
+        List<List<T>> result = new ArrayList<>();
+        Queue<BinaryTreeNode<T>> queue = new ArrayBlockingQueue<BinaryTreeNode<T>>(size());
+        BinaryTreeNode<T> root = this.root;
+        queue.add(root);
+        while (queue.size() > 0) {
+            //核心点 ： len记录出队列之前队列长度，决定出几个元素
+            int len = queue.size();
+            List curResult = new ArrayList();
+            for (int i = 0; i < len; i++) {
+                BinaryTreeNode node = queue.poll();
+                curResult.add(node.getVal());
+                if (node.getLeft() != null) {
+                    queue.add(node.getLeft());
+                }
+                if (node.getRight() != null) {
+                    queue.add(node.getRight());
+                }
+            }
+            result.add(curResult);
+        }
+        return result;
+    }
+
+    /**
      * 深度有限搜索算法 使用栈
      */
     public List<T> deapSearch_Stack() {

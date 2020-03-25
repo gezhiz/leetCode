@@ -201,6 +201,20 @@ public class BinaryTreeTest {
         }
         System.out.println("遍历结束");
     }
+
+
+    @Test
+    public void testBreadthLevelOrder() {
+        BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree();
+        List<List<Integer>> searchResult = searchTree.breadthLevelOrder();
+        for (List<Integer> list : searchResult) {
+            for (Integer i : list) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("遍历结束");
+    }
     @Test
     public void testDeapSearch() {
         BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree();
