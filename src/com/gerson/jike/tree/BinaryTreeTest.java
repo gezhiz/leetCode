@@ -48,6 +48,18 @@ public class BinaryTreeTest {
         return binarySearchTree;
     }
 
+    private BinaryTree<Integer> generateSearchTree1() {
+        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+        binarySearchTree.insert(4);
+        binarySearchTree.insert(6);
+        binarySearchTree.insert(7);
+        binarySearchTree.insert(3);
+        binarySearchTree.insert(8);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(9);
+        return binarySearchTree;
+    }
+
     private BinaryTree<Integer> generateRandTree() {
         BinaryTree<Integer> randTree = new BinaryRandomTree<>();
         randTree.insert(6);
@@ -233,6 +245,12 @@ public class BinaryTreeTest {
             System.out.println(i + " ");
         }
         System.out.println("遍历结束");
+    }
+
+    @Test
+    public void testBreadthMaxMinDepth() {
+        BinarySearchTree<Integer> searchTree = (BinarySearchTree<Integer>) generateSearchTree1();
+        System.out.println(searchTree.minMaxDepth());
     }
 
 }

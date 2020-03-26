@@ -424,4 +424,64 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
         }
     }
 
+    /**
+     * 最大深度和最小深度
+     * @return
+     */
+    public MinMaxDepth minMaxDepth() {
+        MinMaxDepth result = new MinMaxDepth();
+        Queue<BinaryTreeNode> queue = new ArrayBlockingQueue<BinaryTreeNode>(size());
+        queue.add(this.root);
+        int depth = 0;
+        while (queue.size() > 0) {
+            depth++;
+            int len = queue.size();
+            for (int i = 0; i< len; i++) {
+                BinaryTreeNode node = queue.poll();
+                if (node.isLeaf() && result.getMin() == null) {
+                    //第一个叶子节点就是最小深度
+                    result.setMin(depth);
+                }
+                if (node.getRight() != null) {
+                    queue.add(node.getRight());
+                }
+                if (node.getLeft() != null) {
+                    queue.add(node.getLeft());
+                }
+            }
+        }
+        result.setMax(depth);
+        return result;
+
+    }
+
+    public static class MinMaxDepth {
+        private Integer max;
+        private Integer min;
+
+        public Integer getMax() {
+            return max;
+        }
+
+        public void setMax(Integer max) {
+            this.max = max;
+        }
+
+        public Integer getMin() {
+            return min;
+        }
+
+        public void setMin(Integer min) {
+            this.min = min;
+        }
+
+        @Override
+        public String toString() {
+            return "MinMaxDepth{" +
+                    "max=" + max +
+                    ", min=" + min +
+                    '}';
+        }
+    }
+
 }
