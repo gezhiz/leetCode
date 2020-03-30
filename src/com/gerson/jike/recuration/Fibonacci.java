@@ -27,7 +27,7 @@ public class Fibonacci {
         if (resultMap.containsKey(n)) {
             return resultMap.get(n);
         }
-        if (n <= 2) {
+        if (n <= 1) {
             return 1;
         }
         int result = f(n - 1) + f(n - 2);
@@ -37,8 +37,33 @@ public class Fibonacci {
 
     @Test
     public void test() {
-        for (int i = 1; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             System.out.print(f(i) + " ");
         }
     }
+
+    /**
+     * 非递归的方法：回溯
+     * @param n
+     * @return
+     */
+    public void fi(int n) {
+        resultMap.put(0,1);
+        resultMap.put(1,1);
+        for (int i = 2; i < n; i++) {
+            int value = resultMap.get(i - 1) + resultMap.get(i - 2);
+            resultMap.put(i,value);
+        }
+    }
+
+
+    @Test
+    public void testFi() {
+        int n = 1000;
+        fi(n);
+        for (int i = 0; i < n; i++) {
+            System.out.print(resultMap.get(i) + " ");
+        }
+    }
+
 }
