@@ -47,7 +47,10 @@ public class HeapOOM {
     }
 
     public static class OomObject {
-
+        public String fun(String str) {
+            System.out.println("oom object fun execute str:" + str);
+            return "oomOBj result";
+        }
     }
 
 }
