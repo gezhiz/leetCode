@@ -38,19 +38,27 @@ public class RemoveDuplicates {
         int len = nums.length;
         while (j < len) {
             if (nums[i] != nums[j]) {
-                i++;
-                nums[i] = nums[j];
-            } else {
-                j++;
+                nums[++i] = nums[j];
             }
+            j++;
         }
         return i + 1;
+    }
+
+    public int removeDuplicates1(int[] nums) {
+        int ans = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[ans] != nums[j]) {
+                nums[++ans] = nums[j];
+            }
+        }
+        return ans + 1;
     }
 
     @Test
     public void test() {
         int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        int result = removeDuplicates(nums);
+        int result = removeDuplicates1(nums);
         for (int i = 0; i < result; i++) {
             System.out.print(nums[i] + " ");
         }
