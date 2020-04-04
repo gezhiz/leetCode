@@ -28,6 +28,20 @@ public class TestGC {
     }
 
     /**
+     -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:+UseParNewGC -XX:PretenureSizeThreshold=3145728
+     未发生gc，大对象直接进入了老年代（tenured generation）
+     Heap
+     par new generation   total 9216K, used 7659K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)
+     eden space 8192K,  93% used [0x00000007bec00000, 0x00000007bf37aef8, 0x00000007bf400000)
+     from space 1024K,   0% used [0x00000007bf400000, 0x00000007bf400000, 0x00000007bf500000)
+     to   space 1024K,   0% used [0x00000007bf500000, 0x00000007bf500000, 0x00000007bf600000)
+     tenured generation   total 10240K, used 4096K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)
+     the space 10240K,  40% used [0x00000007bf600000, 0x00000007bfa00010, 0x00000007bfa00200, 0x00000007c0000000)
+     Metaspace       used 3146K, capacity 4494K, committed 4864K, reserved 1056768K
+     class space    used 349K, capacity 386K, committed 512K, reserved 1048576K
+     */
+
+    /**
      *
      -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:+UseParNewGC
 
