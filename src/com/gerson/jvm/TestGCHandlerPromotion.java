@@ -30,7 +30,7 @@ public class TestGCHandlerPromotion {
         b7 = new byte[2 * _1MB];
 
 
-    }O
+    }
 
     /**
      *
