@@ -2,6 +2,7 @@ package com.gerson.juc;
 
 import org.junit.Test;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -43,6 +44,7 @@ public class DeadLock {
      */
     @Test
     public void test() throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(2);
         Thread thread1 = new Thread(() -> {
             lockA.lock();
             try {
@@ -51,7 +53,9 @@ public class DeadLock {
                 e.printStackTrace();
             }
             lockB.lock();
+            countDownLatch.countDown();
         });
+        thread1.setName("threadA");
         thread1.start();
 
         Thread thread2 = new Thread(() -> {
@@ -62,7 +66,11 @@ public class DeadLock {
                 e.printStackTrace();
             }
             lockA.lock();
+            countDownLatch.countDown();
         });
+        thread2.setName("threadB");
         thread2.start();
+
+        countDownLatch.await();
     }
 }
