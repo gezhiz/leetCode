@@ -19,7 +19,7 @@ public class AppContext {
      ThreadLocal对象的get方法实现：把threadLocal 对象作为key传给Thread对象的threadLocalMap的key，然后拿到数据
      ThreadLocal对象的put()方法实现：把threadLocal 对象作为key传给Thread对象的threadLocalMap的key，然后设置数据
      */
-    private static final ThreadLocal<AppContext> threadLocal = new NameThreadLocal("AppContext");
+    private static final ThreadLocal<AppContext> threadLocal = new NameThreadLocal(AppContext.class.getCanonicalName() + " ThreadLocal");
 
     /**
      * 私有构造，不允许外部创建该类，一个线程只允许有一个该实例
