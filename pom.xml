@@ -5,6 +5,18 @@
     <groupId>com.gerson</groupId>
     <artifactId>gerson.leetCode</artifactId>
     <version>1.0.0</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <modelVersion>4.0.0</modelVersion>
 
     <dependencies>
@@ -14,6 +26,12 @@
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com._42six.amino.core</groupId>-->
+            <!--<artifactId>amino-core</artifactId>-->
+            <!--<version>2.1.0</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

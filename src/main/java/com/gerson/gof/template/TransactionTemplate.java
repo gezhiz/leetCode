@@ -1,4 +1,4 @@
-package com.gerson.design.template;
+package com.gerson.gof.template;
 
 import java.lang.reflect.UndeclaredThrowableException;
 

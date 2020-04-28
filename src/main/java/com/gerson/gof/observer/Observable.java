@@ -1,4 +1,4 @@
-package com.gerson.design.observer;
+package com.gerson.gof.observer;
 
 /**
  * Created by gezz on 2019/3/14.

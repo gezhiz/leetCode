@@ -1,4 +1,4 @@
-package com.gerson.design.observer;
+package com.gerson.gof.observer;
 
 /**
  * 观察者接口

@@ -1,4 +1,4 @@
-package com.gerson.design.observer;
+package com.gerson.gof.observer;
 
 import java.util.ArrayList;
 import java.util.List;
