@@ -10,7 +10,8 @@ import java.util.Date;
 public class TimeTestable {
 
     /**
-     * 可测试性差的代码
+     * 可测试性差的代码,包含不确定因素 当前时间戳。
+     * 同理，如果代码中存在生成随机数的逻辑，也需要这样处理，增强代码的可测试性
      * @param dueTime
      * @return
      */
