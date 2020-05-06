@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 模板方法模式，对子类提供模板方法，子类实现自己的个性化方法
  * @author gezz
  * @description
  * @date 2020/5/6.
