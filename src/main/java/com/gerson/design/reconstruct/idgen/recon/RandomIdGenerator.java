@@ -50,7 +50,7 @@ public class RandomIdGenerator implements IdGenerator {
 
 
     @VisibleForTesting
-    protected String getLastSubstrSplittedByDot(String hostName) {
+    public String getLastSubstrSplittedByDot(String hostName) {
         if (hostName == null || hostName.isEmpty()) {
             //运行时异常
             throw new IllegalArgumentException("...");
@@ -61,7 +61,7 @@ public class RandomIdGenerator implements IdGenerator {
     }
 
     @VisibleForTesting
-    protected String generateRandomAlphameric(int length) {
+    public String generateRandomAlphameric(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException("...");
         }
