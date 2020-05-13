@@ -11,6 +11,10 @@ import java.util.Map;
  * @date 2020/5/6.
  */
 
+/**
+ * 打印控制台的方式
+ * 如果打印控制台的方式不想使用json格式，那么就需要将output的代码进一步进行抽象，抽象出一个接口，针对RequestStats对象进行处理的接口
+ */
 public class ConsoleViewer implements StatViewer {
 
     @Override
