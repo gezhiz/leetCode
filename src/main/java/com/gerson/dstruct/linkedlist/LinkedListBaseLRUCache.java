@@ -1,6 +1,4 @@
-package com.gerson.dstruct;
-
-import org.junit.Test;
+package com.gerson.dstruct.linkedlist;
 
 import java.util.Iterator;
 import java.util.LinkedList;
