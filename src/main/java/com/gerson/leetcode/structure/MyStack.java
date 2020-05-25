@@ -31,6 +31,13 @@ public class MyStack<E> {
         items = new Object[capacity];
     }
 
+    public E get() {
+        if (getSize() == 0) {
+            return null;
+        }
+        return (E) items[top];
+    }
+
     public E pop() {
         if (getSize() == 0) {
             return null;

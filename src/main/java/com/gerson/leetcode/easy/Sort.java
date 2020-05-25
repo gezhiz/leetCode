@@ -11,6 +11,7 @@ public class Sort {
     public void test() {
         int[] numbers = new int[] {3,1,0,3,2,1,2,2,46,53,9,23};
 //        bubbleSort(numbers);
+//        selectSort(numbers);
         insertSort(numbers);
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
@@ -26,24 +27,32 @@ public class Sort {
 
     public void bubbleSort(int[] numbers) {
         int size = numbers.length;
-        for (int i = 0; i < size - 1; i++) {//冒泡排序的次数
-            for (int j = 0; j < size -i - 1; j++) {//排序的索引
+        //冒泡排序的次数
+        for (int i = 0; i < size - 1; i++) {
+            //标记，如果某一次冒泡过程中，没有发生交换，则排序已经完成
+            boolean flag = false;
+            for (int j = 0; j < size -i - 1; j++) {
+                //进行一次冒泡
                 if (numbers[j] > numbers[j + 1]) {
                     int temp = numbers[j + 1];
                     numbers[j + 1] = numbers[j];
                     numbers[j] = temp;
+                    flag = true;
                 }
+            }
+            if (flag == false) {
+                break;
             }
          }
     }
 
 
     /**
-     * 插入排序
+     * 选择排序
      * ﻿基本思想：每步将一个待排序的记录，按其顺序码大小插入到前面已经排序的字序列的合适位置（从后向前找到合适位置后），直到全部插入排序完为止。
      * @param numbers
      */
-    public void insertSort(int[] numbers) {
+    public void selectSort(int[] numbers) {
         int size = numbers.length;
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
@@ -53,6 +62,32 @@ public class Sort {
                     numbers[j] = temp;
                 }
             }
+        }
+    }
+
+    /**
+     * 插入排序
+     * 将数据分成已排序区域和未排序区域，在未排序区域选择数据插入到已排序区域
+     * @param numbers
+     */
+    public void insertSort(int[] numbers) {
+        int size = numbers.length;
+        if (size <= 0) {
+            return;
+        }
+        //默认情况下，第一个元素为有序的区域。从数组的第二个元素开始是无需的区域
+        for (int i = 1; i < size; i++) {
+            int value = numbers[i];
+            //查找该插入的位置，并且移动数据空出该位置
+            int j = i - 1;
+            for (; j >= 0; --j) {
+                if (numbers[j] > value) {
+                    numbers[j + 1] = numbers[j];
+                } else {
+                    break;
+                }
+            }
+            numbers[j + 1] = value;
         }
     }
 }

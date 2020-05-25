@@ -21,17 +21,17 @@ public class Fibonacci {
      * 在多线程场景可以使用ThreadLocal代替HashMap
      *
      */
-    private Map<Integer,Integer> resultMap = new HashMap<>();
+    private Map<Integer,Integer> cache = new HashMap<>();
 
     public int f(int n) {
-        if (resultMap.containsKey(n)) {
-            return resultMap.get(n);
+        if (cache.containsKey(n)) {
+            return cache.get(n);
         }
         if (n <= 1) {
             return 1;
         }
         int result = f(n - 1) + f(n - 2);
-        resultMap.put(n,result);
+        cache.put(n,result);
         return result;
     }
 
@@ -48,13 +48,14 @@ public class Fibonacci {
      * @return
      */
     public void fi(int n) {
-        resultMap.put(0,1);
-        resultMap.put(1,1);
+        cache.put(0,1);
+        cache.put(1,1);
         for (int i = 2; i < n; i++) {
-            int value = resultMap.get(i - 1) + resultMap.get(i - 2);
-            resultMap.put(i,value);
+            int value = cache.get(i - 1) + cache.get(i - 2);
+            cache.put(i,value);
         }
     }
+
 
 
     @Test
@@ -62,7 +63,7 @@ public class Fibonacci {
         int n = 1000;
         fi(n);
         for (int i = 0; i < n; i++) {
-            System.out.print(resultMap.get(i) + " ");
+            System.out.print(cache.get(i) + " ");
         }
     }
 
