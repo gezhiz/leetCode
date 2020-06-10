@@ -12,7 +12,8 @@ public class Sort {
         int[] numbers = new int[] {3,1,0,3,2,1,2,2,46,53,9,23};
 //        bubbleSort(numbers);
 //        selectSort(numbers);
-        insertSort(numbers);
+//        insertSort(numbers);
+        mergeSort(numbers, 0, numbers.length - 1);
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
         }
@@ -88,6 +89,44 @@ public class Sort {
                 }
             }
             numbers[j + 1] = value;
+        }
+    }
+
+    /**
+     * 归并排序
+     * @param numbers
+     * @param start
+     * @param end
+     */
+    public void mergeSort(int[] numbers, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int mid = (start + end) / 2;
+        mergeSort(numbers, start, mid);
+        mergeSort(numbers, mid + 1, end);
+        //合并start-mid, mid+1-end 两端数组
+        int i = start, j = mid + 1;
+        int[] tmpArray = new int[end - start + 1];
+        int tmp = 0;
+        while (i <= mid || j <= end) {
+            if (i <= mid && j <= end) {
+                if (numbers[i] <= numbers[j]) {
+                    tmpArray[tmp++] = numbers[i++];
+                } else {
+                    tmpArray[tmp++] = numbers[j++];
+                }
+            } else if (i <= mid) {
+                //处理剩余的数据
+                tmpArray[tmp++] = numbers[i++];
+            } else if (j <= end) {
+                //处理剩余的数据
+                tmpArray[tmp++] = numbers[j++];
+            }
+        }
+        //把tmpArray的数据拷贝到tmpArray
+        for (int p = 0, q = start; p < tmpArray.length; p++, q++) {
+            numbers[q] = tmpArray[p];
         }
     }
 }
