@@ -9,11 +9,13 @@ public class Sort {
 
     @Test
     public void test() {
-        int[] numbers = new int[] {3,1,0,3,2,1,2,2,46,53,9,23};
+//        int[] numbers = new int[] {3,1,0,3,2,1,2,2,46,53,9,23};
+        int numbers[] = {1,111,10,4,12,1,1,1,1,1,6,5,3,2,1,6,63,8,7,20,1000,2000,21131,2323,3231,23,42,11,1,2,3,4,5,2,3,4,5,2,5,2,3,2,0,0};
 //        bubbleSort(numbers);
 //        selectSort(numbers);
 //        insertSort(numbers);
-        mergeSort(numbers, 0, numbers.length - 1);
+//        mergeSort(numbers, 0, numbers.length - 1);
+        quickSort(numbers, 0, numbers.length - 1);
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
         }
@@ -44,7 +46,7 @@ public class Sort {
             if (flag == false) {
                 break;
             }
-         }
+        }
     }
 
 
@@ -128,5 +130,43 @@ public class Sort {
         for (int p = 0, q = start; p < tmpArray.length; p++, q++) {
             numbers[q] = tmpArray[p];
         }
+    }
+
+    /**
+     * 快速排序：原地排序，稳定的排序，时间复杂度O(nlogn)
+     * 一次快速排序：选取任意一个元素（比如选取尾部）p作为分区元素，大于等于p的放右边，小于p的放左边
+     *      使用双指针，i从start头往后遍历，j从end往前遍历，通过与p进行比较，遇到需要交换的场景则进行交换。
+     * 最终i和j相遇,再分别对两边进行递归快速排序
+     * @param numbers
+     * @param start
+     * @param end
+     */
+    public void quickSort(int[] numbers, int start, int end) {
+        if (numbers == null || numbers.length <= 0 || start >= end || start < 0 || end < 0) {
+            return;
+        }
+        int i = start, j = end -1, p = end;
+        while (i < j) {
+            if (numbers[i] < numbers[p]) {
+                //以i为标准去寻找分区点
+                i++;
+            } else if (numbers[j] >= numbers[p]) {
+                j--;
+            } else {
+                //j有可能会比i小，所以后续只能选取i作为分区点
+                swap(numbers, i++ , j--);
+            }
+        }
+        //i选取为分区点
+        if (numbers[i] > numbers[p]) {
+            swap(numbers, i, p);
+        }
+        quickSort(numbers, 0, i);
+        quickSort(numbers, i + 1, end);
+    }
+    public void swap(int[] numbers, int i, int j) {
+        int tmp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = tmp;
     }
 }
