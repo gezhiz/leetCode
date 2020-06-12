@@ -19,6 +19,8 @@ public class Sort {
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
         }
+
+        System.out.println(kthNumber(numbers, 0, numbers.length - 1, 14));
     }
 
     /**
@@ -145,10 +147,22 @@ public class Sort {
         if (numbers == null || numbers.length <= 0 || start >= end || start < 0 || end < 0) {
             return;
         }
+        int i = partition(numbers, start, end);
+        quickSort(numbers, 0, i);
+        quickSort(numbers, i + 1, end);
+    }
+
+    /**
+     * 尽心一次快速排序，分区操作
+     * @param numbers
+     * @param start
+     * @param end
+     * @return
+     */
+    private int partition(int[] numbers, int start, int end) {
         int i = start, j = end -1, p = end;
         while (i < j) {
             if (numbers[i] < numbers[p]) {
-                //以i为标准去寻找分区点
                 i++;
             } else if (numbers[j] >= numbers[p]) {
                 j--;
@@ -161,12 +175,35 @@ public class Sort {
         if (numbers[i] > numbers[p]) {
             swap(numbers, i, p);
         }
-        quickSort(numbers, 0, i);
-        quickSort(numbers, i + 1, end);
+        return i;
     }
+
     public void swap(int[] numbers, int i, int j) {
         int tmp = numbers[i];
         numbers[i] = numbers[j];
         numbers[j] = tmp;
     }
+
+    /**
+     * 获取第K大的数组元素
+     * @param numbers
+     * @param start
+     * @param end
+     * @param k
+     * @return
+     */
+    private int kthNumber(int[] numbers, int start, int end, int k) {
+        if (numbers == null || numbers.length <= 0 || start >= end || start < 0 || end < 0) {
+            throw new IllegalArgumentException();
+        }
+        int i = partition(numbers, start, end);
+        if (i == k - 1) {
+            return numbers[i];
+        } else if (i > k -1) {
+            return kthNumber(numbers, 0, i, k);
+        } else {
+            return kthNumber(numbers, i + 1, end, k);
+        }
+    }
+
 }
