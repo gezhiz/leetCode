@@ -77,7 +77,7 @@ public class BinaryTreeTest {
         BinaryTree<Integer> randTree = new BinaryRandomTree<>();
         while (randTree.size() < size) {
             int random = new Random().nextInt(size);
-            System.out.println("insert:" + random);
+            System.out.println("orderedInsert:" + random);
             randTree.insert(random);
         }
         return randTree;
@@ -91,7 +91,7 @@ public class BinaryTreeTest {
         int numSize = 100000;
         while (binarySearchTree.size() < numSize) {
             int random = new Random().nextInt(numSize);
-            System.out.println("insert:" + random);
+            System.out.println("orderedInsert:" + random);
             binarySearchTree.insert(random);
         }
 

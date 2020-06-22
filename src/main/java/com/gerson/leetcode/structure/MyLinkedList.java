@@ -59,6 +59,8 @@ public class MyLinkedList<T> {
         //初始化
         Node pre = head;
         Node cur = head.getNext();
+        //特别注意：头部有一个循环链表
+        head.setNext(null);
         Node temp;
         tail = head;
         //开始循环
@@ -68,7 +70,6 @@ public class MyLinkedList<T> {
             pre = cur;
             cur = temp;
         }
-        head.setNext(null);
         head = pre;
     }
 

@@ -89,7 +89,7 @@ public class Array {
         array.insert(1, 5);
         array.insert(3, 9);
         array.insert(3, 10);
-        //array.insert(3, 11);
+        //array.orderedInsert(3, 11);
         array.printAll();
     }
 }
