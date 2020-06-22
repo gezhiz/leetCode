@@ -9,6 +9,7 @@ import org.junit.Test;
  */
 public class MyLinkedList<T extends Comparable> {
 
+
     private Node<T> head;
 
     private class Node<T> {
@@ -66,6 +67,7 @@ public class MyLinkedList<T extends Comparable> {
             return false;
         }
         Node<T> cur = head;
+        //第一个就是要删除的元素
         if (cur.value.equals(value)) {
             //头结点开始就是value
             while (cur.next != null && value.equals(cur.next.value)) {
@@ -141,6 +143,7 @@ public class MyLinkedList<T extends Comparable> {
         linkedList.insertFirst(3);
         linkedList.insertFirst(2);
         linkedList.insertFirst(1);
+        linkedList.reverse();
         System.out.println(linkedList.head);
     }
 }

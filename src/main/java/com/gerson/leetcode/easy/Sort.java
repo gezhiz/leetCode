@@ -17,8 +17,9 @@ public class Sort {
 //        mergeSort(numbers, 0, numbers.length - 1);
         quickSort(numbers, 0, numbers.length - 1);
         for (int i = 0; i < numbers.length; i++) {
-            System.out.println(numbers[i]);
+            System.out.print(numbers[i] + " ");
         }
+        System.out.println();
 
         System.out.println(kthNumber(numbers, 0, numbers.length - 1, 14));
     }
@@ -148,12 +149,12 @@ public class Sort {
             return;
         }
         int i = partition(numbers, start, end);
-        quickSort(numbers, 0, i);
+        quickSort(numbers, start, i);
         quickSort(numbers, i + 1, end);
     }
 
     /**
-     * 尽心一次快速排序，分区操作
+     * 进行一次快速排序，分区操作
      * @param numbers
      * @param start
      * @param end
@@ -162,9 +163,9 @@ public class Sort {
     private int partition(int[] numbers, int start, int end) {
         int i = start, j = end -1, p = end;
         while (i < j) {
-            if (numbers[i] < numbers[p]) {
+            if (numbers[i] <= numbers[p]) {
                 i++;
-            } else if (numbers[j] >= numbers[p]) {
+            } else if (numbers[j] > numbers[p]) {
                 j--;
             } else {
                 //j有可能会比i小，所以后续只能选取i作为分区点
@@ -194,7 +195,7 @@ public class Sort {
      */
     private int kthNumber(int[] numbers, int start, int end, int k) {
         if (numbers == null || numbers.length <= 0 || start >= end || start < 0 || end < 0) {
-            throw new IllegalArgumentException();
+            return -1;
         }
         int i = partition(numbers, start, end);
         if (i == k - 1) {
