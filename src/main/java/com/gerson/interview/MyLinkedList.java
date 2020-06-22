@@ -14,6 +14,18 @@ public class MyLinkedList<T extends Comparable> {
     private class Node<T> {
         public Node<T> next;
         public T value;
+
+        public Node(T value) {
+            this.value = value;
+        }
+    }
+
+    public boolean insertFirst(T t) {
+        if (t == null) return false;
+        Node<T> node = new Node<>(t);
+        node.next = head;
+        head = node;
+        return true;
     }
 
     /**
@@ -24,7 +36,7 @@ public class MyLinkedList<T extends Comparable> {
         if (t == null) {
             return false;
         }
-        Node<T> node = new Node<T>();
+        Node<T> node = new Node<T>(t);
         node.value = t;
         if (head == null) {
             head = node;
@@ -78,12 +90,13 @@ public class MyLinkedList<T extends Comparable> {
         return true;
     }
 
-    public Node<T> reverse(Node<T> head) {
-        if (head == null) return head;
+    public void reverse() {
+        if (head == null) {
+            return;
+        }
         Node<T> pre = head;
-        Node<T> cur = pre.next;
+        Node<T> cur = head.next;
         Node<T> tmp = null;
-        //利用pre构造一个新链表
         head.next = null;
         while (cur != null) {
             tmp = cur.next;
@@ -91,7 +104,7 @@ public class MyLinkedList<T extends Comparable> {
             pre = cur;
             cur = tmp;
         }
-        return pre;
+        head = pre;
     }
 
     @Test
@@ -102,7 +115,7 @@ public class MyLinkedList<T extends Comparable> {
         linkedList.orderedInsert(6);
         linkedList.orderedInsert(10);
         linkedList.orderedInsert(1);
-        linkedList.head = linkedList.reverse(linkedList.head);
+        linkedList.reverse();
         System.out.println(linkedList.head);
     }
 
@@ -116,6 +129,18 @@ public class MyLinkedList<T extends Comparable> {
         linkedList.orderedInsert(1);
         System.out.println(linkedList.head.value);
         linkedList.del(10);
+        System.out.println(linkedList.head);
+    }
+
+    @Test
+    public void testInsertFirst() {
+        MyLinkedList<Integer> linkedList = new MyLinkedList<Integer>();
+        linkedList.insertFirst(6);
+        linkedList.insertFirst(5);
+        linkedList.insertFirst(4);
+        linkedList.insertFirst(3);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(1);
         System.out.println(linkedList.head);
     }
 }
