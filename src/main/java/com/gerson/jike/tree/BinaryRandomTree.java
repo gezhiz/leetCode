@@ -26,6 +26,25 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
         return 0;
     }
 
+    public void mirrorTree() {
+        mirrorTree(this.root);
+    }
+    /**
+     * 镜像二叉树
+     * @param node
+     * @return
+     */
+    public void mirrorTree(BinaryTreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+        BinaryTreeNode<T> tmp = null;
+        tmp = node.getLeft();
+        node.setLeft(node.getRight());
+        node.setRight(tmp);
+        mirrorTree(node.getLeft());
+        mirrorTree(node.getRight());
+    }
     /**
      * 前根遍历
      *

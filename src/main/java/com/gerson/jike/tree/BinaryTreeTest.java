@@ -253,6 +253,13 @@ public class BinaryTreeTest {
         System.out.println(searchTree.minMaxDepth());
     }
 
+    @Test
+    public void testMirrorTree() {
+        BinaryRandomTree<Integer> randomTree = (BinaryRandomTree<Integer>) generateRandTree(10);
+        randomTree.inOrder();
+        randomTree.mirrorTree();
+        randomTree.inOrder();
+    }
 }
 
 

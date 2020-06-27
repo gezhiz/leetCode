@@ -21,6 +21,18 @@ public class MyLinkedList<T extends Comparable> {
         }
     }
 
+    public void reversal() {
+        Node<T> pre = head, cur = head.next, tmp;
+        head.next = null;
+        while (cur != null) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        head = pre;
+    }
+
     public boolean insertFirst(T t) {
         if (t == null) return false;
         Node<T> node = new Node<>(t);
@@ -143,7 +155,7 @@ public class MyLinkedList<T extends Comparable> {
         linkedList.insertFirst(3);
         linkedList.insertFirst(2);
         linkedList.insertFirst(1);
-        linkedList.reverse();
+        linkedList.reversal();
         System.out.println(linkedList.head);
     }
 }

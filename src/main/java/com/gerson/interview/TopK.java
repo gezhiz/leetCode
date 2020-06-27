@@ -22,6 +22,15 @@ public class TopK {
         System.out.println(topK);
     }
 
+    @Test
+    public void testQuickSort() {
+        int[] array = {2,5,6,8,3,5,7,9,32,123,8,5,4,3};
+        quickSort(array, 0, array.length - 1);
+        for (int item : array) {
+            System.out.print(item + " ");
+        }
+    }
+
     public int topK(int[] array, int k) {
         if (array == null || array.length < k) {
             return -1;
@@ -64,6 +73,34 @@ public class TopK {
             swap(array, i, p);
         }
         return i;
+    }
+
+    private int partitionNew(int[] array, int start, int end) {
+        int p = end;
+        int i = start, j = end - 1;
+        while (i < j) {
+            if (array[i] <= array[p]) {
+                i++;
+            } else if (array[j] > array[p]) {
+                j--;
+            } else {
+                swap(array, i++, j--);
+            }
+        }
+        if (array[i] > array[p]) {
+            swap(array, i, p);
+        }
+        return i;
+    }
+
+    public void quickSort(int[] array, int start, int end) {
+        if (start >= end || end >= array.length) {
+            return;
+        }
+        int i = partitionNew(array, start, end);
+        partitionNew(array, start,  i - 1);
+        quickSort(array, i + 1, end);
+
     }
 
     private void swap(int[] array, int i, int j) {

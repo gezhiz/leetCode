@@ -10,11 +10,12 @@ public class FinallyTest {
         public int a;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println(test());
         System.out.println(test1());
         System.out.println(test2().a);
         System.out.println(test3());
+        System.out.println(test4());
     }
 
     //return 2
@@ -67,6 +68,21 @@ public class FinallyTest {
             return a;
         } finally {
             a++;
+        }
+    }
+
+    //return 3,并且报错
+    public static int test4() throws Exception {
+        int a = 1;
+        try {
+            a++;
+            throw new Exception();
+        } catch (Exception e) {
+            a++;
+            return a;
+        } finally {
+            a++;
+            throw new Exception();
         }
     }
 }
