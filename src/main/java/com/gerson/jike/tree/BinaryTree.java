@@ -1,5 +1,8 @@
 package com.gerson.jike.tree;
 
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingDeque;
+
 /**
  * @author gezz
  * @description todo
@@ -26,4 +29,20 @@ public abstract class BinaryTree<T extends Comparable> implements Tree<T> {
     public abstract BinaryTreeNode<T> lowestCommonAncestor(BinaryTreeNode<T> p, BinaryTreeNode<T> q);
 
     public abstract BinaryTreeNode<T> findNode(BinaryTreeNode<T> node, T data);
+
+    @Override
+    public void levelOrder() {
+        Queue<BinaryTreeNode> resultQueue = new LinkedBlockingDeque<BinaryTreeNode>();
+        resultQueue.add(root);
+        BinaryTreeNode<Integer> node = null;
+        while ((node = resultQueue.poll()) != null) {
+            System.out.print(node.getVal() + " ");
+            if (node.getLeft() != null) {
+                resultQueue.add(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                resultQueue.add(node.getRight());
+            }
+        }
+    }
 }

@@ -46,6 +46,7 @@ public class DeadLock {
      * 解决方法：
      *  1、AB两个锁的获取顺序要相同
      *  2、把获取A锁和B锁的方法设置成原子操作
+     *  3、获取不到另外一个锁的时候，释放已有的锁
      *
      *
      * @throws InterruptedException

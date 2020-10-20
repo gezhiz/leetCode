@@ -6,10 +6,10 @@ package com.gerson.jvm;
  * @date 2020/4/6.
  */
 public class TestClass {
-    private int m;
+    private int x;
     public int inc() {
         try {
-            return m + 1;
+            return x + 1;
         } catch (Exception e) {
             return 20;
         } finally {
@@ -17,6 +17,6 @@ public class TestClass {
         }
     }
     public int inc(int i) {
-        return m + 1;
+        return x + 1;
     }
 }

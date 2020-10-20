@@ -1,6 +1,9 @@
 package com.gerson.jike.tree;
 
+import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * @author gezz
@@ -114,10 +117,6 @@ public class BinaryRandomTree<T extends Comparable> extends BinaryTree<T> implem
         postOrder(node.getLeft());
         postOrder(node.getRight());
         System.out.print(node.getVal() + " ");
-    }
-
-    @Override
-    public void levelOrder() {
     }
 
     @Override

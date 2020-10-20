@@ -158,6 +158,11 @@ public class BinaryTreeTest {
         System.out.println("randTree max :" + randTree.findMax());
     }
 
+    @Test
+    public void testLevelOrder() {
+        BinaryTree<Integer> binarySearchTree = generateSearchTree();
+        binarySearchTree.levelOrder();
+    }
 
 
     @Test

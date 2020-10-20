@@ -102,10 +102,6 @@ public class BinarySearchTree<T extends Comparable> extends BinaryTree<T> implem
     }
 
     @Override
-    public void levelOrder() {
-    }
-
-    @Override
     public void insert(T data) {
         if (data == null) {
             throw new RuntimeException("data can not be null!");

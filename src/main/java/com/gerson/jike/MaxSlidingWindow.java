@@ -68,12 +68,11 @@ public class MaxSlidingWindow {
         Deque<Integer> arrayDeque = new ArrayDeque<>(k);
         int[] result = new int[nums.length - k + 1];
         for (int i = 2; i < nums.length; i++) {
-            int item = nums[i];
             if (arrayDeque.size() > 0 && arrayDeque.getFirst() <= i - k) {
                 //滑动窗口把最大值替换出去了
                 arrayDeque.pollFirst();
             }
-            while (arrayDeque.size() > 0 && item >= nums[arrayDeque.getLast()]) {
+            while (arrayDeque.size() > 0 && nums[i] >= nums[arrayDeque.getLast()]) {
                 arrayDeque.pollLast();
             }
             //入队列
