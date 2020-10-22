@@ -36,7 +36,7 @@ public class TestGCHandlerPromotion {
      *
      [GC (Allocation Failure) [ParNew: 7495K->446K(9216K), 0.0065550 secs] 7495K->4542K(19456K), 0.0065894 secs] [Times: user=0.02 sys=0.01, real=0.00 secs]
      [GC (Allocation Failure) [ParNew: 6830K->579K(9216K), 0.0007955 secs] 10926K->4675K(19456K), 0.0008123 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
-     Heap
+     LargeTopHeap
      par new generation   total 9216K, used 2874K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)
      eden space 8192K,  28% used [0x00000007bec00000, 0x00000007bee4aed0, 0x00000007bf400000)
      from space 1024K,  56% used [0x00000007bf400000, 0x00000007bf490f70, 0x00000007bf500000)

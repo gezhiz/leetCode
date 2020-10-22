@@ -9,22 +9,22 @@ package com.gerson.dstruct.heap;
  * @description
  * @date 2020/10/20.
  */
-public class Heap {
+public class LargeTopHeap {
     /**
      * 堆中存储的数据，下标从1开始
      */
-    public int[] array;
+    public Integer[] array;
     /**
      * 堆中已经存放的数据
      */
-    public int count;
+    public Integer count;
     /**
      * 堆最大容量
      */
-    public int maxCount;
+    public Integer maxCount;
 
-    public Heap(int capacity) {
-        array = new int[capacity + 1];
+    public LargeTopHeap(Integer capacity) {
+        array = new Integer[capacity + 1];
         maxCount = capacity;
         count = 0;
     }
@@ -32,20 +32,21 @@ public class Heap {
 
 
     /**
-     * 向堆中插入一个元素，时间复杂度O(Logn)
+     * 向堆中插入一个元素，时间复杂度O(Logn)，从下往上堆化
      * @param data
      */
-    public void insert(int data) {
+    public boolean insert(Integer data) {
         if (count >= maxCount) {
-            return;
+            return false;
         }
         array[++count] = data;
         //从下往上 进行堆化操作,把更大的数放在前面
-        int i = count;
+        Integer i = count;
         while (i / 2 > 0 && array[i] > array[i/2]) {
             swap(this.array, i, i/2);
             i = i / 2;
         }
+        return true;
     }
 
 
@@ -55,22 +56,22 @@ public class Heap {
      * @param a
      * @param count 数组数据量
      */
-    public void buildHeap(int a[], int count) {
-        for (int i = count / 2; i >= 1; i--) {
+    public static void buildHeap(Integer a[], Integer count) {
+        for (Integer i = count / 2; i >= 1; i--) {
             heapify(a, count, i);
         }
     }
 
-    public void heapSort(int a[], int count) {
+    public static void heapSort(Integer a[], Integer count) {
         buildHeap(a, count);
-        int k = count;
+        Integer k = count;
         //删除堆顶元素  （删除堆顶元素的逻辑：用堆内最后一个元素替换堆顶元素），然后再重新把k排除构建堆
-        while (k > 1) {
+        while (k >= 1) {
             //堆顶元素和最后一个元素互换
-            swap(a, k , 1);
+            swap(a, k, 1);
             //针对剩余元素重新构建堆
             k--;
-            heapify(array, k, 1);
+            heapify(a, k, 1);
         }
     }
 
@@ -78,49 +79,58 @@ public class Heap {
      * 用堆内最后一个元素替换堆顶元素，然后从上往下进行堆化,时间复杂度O(Logn)
      * @return
      */
-    public int removeMax() {
+    public Integer removeMax() {
         if (count == 0) {
-            return -1;
+            return null;
         }
-        int max = array[1];
+        Integer max = array[1];
         array[1] = array[count];
+        array[count] = -1;
         count--;
         //从上往下堆化
         heapify(array, count, 1);
         return max;
     }
 
+    public Integer getMaxCount() {
+        if (count >= 0) {
+            return array[1];
+        }
+        return null;
+    }
+
     /**
      * 从needEx位置开始向下进行堆化操作
      * @param array
-     * @param count
+     * @param count 数组中最大堆的位置
      * @param i 开始堆化的索引  i > 0
      */
-    private void heapify(int[] array, int count, int i) {
+    private static void heapify(Integer[] array, Integer count, Integer i) {
         if (i < 0) {
             throw new IllegalArgumentException("i must be bigger than 0");
         }
         while (true) {
             //每一轮循环都找到最大的数的位置
-            int maxPos = i;
+            Integer maxPos = i;
             //与左子节点进行比较
-            if (i * 2 < count && array[maxPos] < array[2 * i]) {
+            if (i * 2 <= count && array[maxPos] < array[2 * i]) {
                 maxPos = i * 2;
             }
             //与右子节点
-            if (i * 2 + 1 < count && array[maxPos] < array[2 * i + 1]) {
+            if (i * 2 + 1 <= count && array[maxPos] < array[2 * i + 1]) {
                 maxPos = i * 2 + 1;
             }
 
             if (maxPos == i) {
                 break;
             }
-            swap(this.array, maxPos, i);
+            swap(array, maxPos, i);
+            i = maxPos;
         }
     }
 
-    public void swap(int[] array, int i, int j) {
-        int tmp = array[i];
+    public static void swap(Integer[] array, Integer i, Integer j) {
+        Integer tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
     }

@@ -15,7 +15,7 @@ public class HeapOOM {
      *
      java.lang.OutOfMemoryError: Java heap space
      Dumping heap to /opt/jvm/oom/java_pid2035.hprof ...
-     Heap dump file created [27801162 bytes in 0.142 secs]
+     LargeTopHeap dump file created [27801162 bytes in 0.142 secs]
      Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
      at java.util.Arrays.copyOf(Arrays.java:3210)
      at java.util.Arrays.copyOf(Arrays.java:3181)

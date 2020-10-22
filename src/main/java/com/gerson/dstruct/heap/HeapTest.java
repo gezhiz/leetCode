@@ -1,5 +1,6 @@
 package com.gerson.dstruct.heap;
 
+import com.google.gson.Gson;
 import org.junit.Test;
 
 /**
@@ -11,15 +12,25 @@ public class HeapTest {
 
     @Test
     public void testInsert() {
-        Heap heap = new Heap(10);
+        LargeTopHeap heap = new LargeTopHeap(10);
         for (int i = 0; i < 10; i ++) {
             heap.insert(i);
         }
-        System.out.println(heap.array.toString());
+        System.out.println(new Gson().toJson(heap.array));
+        heap.removeMax();
+        System.out.println(new Gson().toJson(heap.array));
     }
 
     @Test
     public void test() {
-        System.out.println(1/2);
+        Integer[] array = {0,2,1,4,5,2,1,2,8,6,4,2,7,9,4};
+        LargeTopHeap.heapSort(array, array.length - 1);
+        System.out.println(new Gson().toJson(array));
+    }
+
+    @Test
+    public void testPlus() {
+        int count = 1;
+        System.out.println(++count);
     }
 }

@@ -30,7 +30,7 @@ public class TestGC {
     /**
      -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:+UseParNewGC -XX:PretenureSizeThreshold=3145728
      未发生gc，大对象直接进入了老年代（tenured generation）
-     Heap
+     LargeTopHeap
      par new generation   total 9216K, used 7659K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)
      eden space 8192K,  93% used [0x00000007bec00000, 0x00000007bf37aef8, 0x00000007bf400000)
      from space 1024K,   0% used [0x00000007bf400000, 0x00000007bf400000, 0x00000007bf500000)
@@ -46,7 +46,7 @@ public class TestGC {
      -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:+UseParNewGC
 
      [GC (Allocation Failure) [ParNew: 7495K->440K(9216K), 0.0096143 secs] 7495K->6584K(19456K), 0.0096501 secs] [Times: user=0.02 sys=0.00, real=0.00 secs]
-     Heap
+     LargeTopHeap
      par new generation   total 9216K, used 4701K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)
      eden space 8192K,  52% used [0x00000007bec00000, 0x00000007bf029140, 0x00000007bf400000)
      from space 1024K,  43% used [0x00000007bf500000, 0x00000007bf56e2c0, 0x00000007bf600000)
@@ -73,7 +73,7 @@ public class TestGC {
 
      [GC (Allocation Failure) --[PSYoungGen: 7495K->7495K(9216K)] 15687K->15695K(19456K), 0.0027637 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
      [Full GC (Ergonomics) [PSYoungGen: 7495K->2457K(9216K)] [ParOldGen: 8200K->8193K(10240K)] 15695K->10650K(19456K), [Metaspace: 3182K->3182K(1056768K)], 0.0101300 secs] [Times: user=0.02 sys=0.01, real=0.01 secs]
-     Heap
+     LargeTopHeap
      PSYoungGen      total 9216K, used 6717K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)
      eden space 8192K, 81% used [0x00000007bf600000,0x00000007bfc8f560,0x00000007bfe00000)
      from space 1024K, 0% used [0x00000007bff00000,0x00000007bff00000,0x00000007c0000000)
