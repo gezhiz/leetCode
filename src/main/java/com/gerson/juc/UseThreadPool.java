@@ -2,10 +2,7 @@ package com.gerson.juc;
 
 import org.junit.Test;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author gezz
@@ -61,11 +58,50 @@ public class UseThreadPool {
                     e.printStackTrace();
                 }
             }
-        }, 0, period, TimeUnit.SECONDS);
+        }, 2, 1 , TimeUnit.SECONDS);
         try {
             Thread.sleep(100000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testThreadPool() {
+
+        ThreadPoolExecutor privateLikeExecutor = new ThreadPoolExecutor(
+                4, 4, 10L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>(1),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        System.out.println("new a like thread");
+                        return new Thread("privateLike");
+                    }
+                },
+                new RejectedExecutionHandler() {
+                    @Override
+                    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+                        System.out.println("task privateLike trigger rejectHandler executor runtime params : " + executor.toString());
+                    }
+                }
+        );
+        int workTime = 1;
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(10);
+        scheduledExecutorService.submit(() -> {
+            try {
+                Thread.sleep(workTime * 1000);
+                System.out.println(System.currentTimeMillis()/1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
